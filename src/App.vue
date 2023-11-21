@@ -94,19 +94,19 @@ const backendSkills = ref([
 
 const uiProjects = ref([
   {
-    image: "./src/assets/images/natgeo-mockup.png",
+    image: "./assets/images/natgeo-mockup.png",
     name: "Nat-Geo Redesign",
     description: "Figma, UI/UX, Prototyping",
     url: "https://www.behance.net/gallery/183185371/National-Geographic-Redesign",
   },
   {
-    image: "./src/assets/images/neubrutalism-landing-page.png",
+    image: "./assets/images/neubrutalism-landing-page.png",
     name: "Neubrutalism Landing Page",
     description: "Figma, UI/UX, Icon Design",
     url: "https://www.behance.net/gallery/183186019/Neubrutalism-Landing-Page",
   },
   {
-    image: "./src/assets/images/soundoff.png",
+    image: "./assets/images/soundoff.png",
     name: "Sound-Off Case Study",
     description: "Adobe XD, UI/UX, User Testing",
     url: "https://www.behance.net/gallery/169087427/SoundOff-Case-Study",

@@ -94,25 +94,25 @@ const backendSkills = ref([
 
 const uiProjects = ref([
   {
-    image: "/assets/images/natgeo-mockup.png",
+    image: "/images/natgeo-mockup.png",
     name: "Nat-Geo Redesign",
     description: "Figma, UI/UX, Prototyping",
     url: "https://www.behance.net/gallery/183185371/National-Geographic-Redesign",
   },
   {
-    image: "/assets/images/neubrutalism-landing-page.png",
+    image: "/images/neubrutalism-landing-page.png",
     name: "Neubrutalism Landing Page",
     description: "Figma, UI/UX, Icon Design",
     url: "https://www.behance.net/gallery/183186019/Neubrutalism-Landing-Page",
   },
   {
-    image: "/assets/images/soundoff.png",
+    image: "/images/soundoff.png",
     name: "Sound-Off Case Study",
     description: "Adobe XD, UI/UX, User Testing",
     url: "https://www.behance.net/gallery/169087427/SoundOff-Case-Study",
   },
   {
-    image: "/assets/images/allrecipes-redesign.png",
+    image: "/images/allrecipes-redesign.png",
     name: "AllRecipes Redesign",
     description: "Figma, UI/UX, Wireframes",
     url: "https://www.behance.net/gallery/180092127/AllRecipes-Redesign",
@@ -120,13 +120,13 @@ const uiProjects = ref([
 ]);
 const frontendProjects = ref([
   {
-    image: "/assets/images/personal-portfolio.png",
+    image: "/images/personal-portfolio.png",
     name: "Personal Portfolio",
     description: "Vue, HTML, CSS",
     url: "",
   },
   {
-    image: "/assets/images/gcu-student-app.png",
+    image: "/images/gcu-student-app.png",
     name: "GCU Student App Redesign",
     description: "Flutter",
     url: "https://github.com/Jugooch/gcu_student_app",
@@ -134,7 +134,7 @@ const frontendProjects = ref([
 ]);
 const backendProjects = ref([
   {
-    image: "/assets/images/minesweeper.PNG",
+    image: "/images/minesweeper.PNG",
     name: "Minesweeper Online",
     description: "C#, .NET Core",
     url: "https://github.com/Jugooch/Milestone-CST350",

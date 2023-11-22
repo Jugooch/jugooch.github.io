@@ -164,13 +164,13 @@ const backendProjects = ref([
     url: "https://github.com/Jugooch/Milestone-CST350",
   },
   {
-    image: "/images/friendzone.PNG",
+    image: "/images/friendzone.png",
     name: "FriendZone Social media",
     description: "Java, Spring Boot, Rest API",
     url: "https://github.com/Jugooch/FriendZone",
   },
   {
-    image: "/images/umarket.PNG",
+    image: "/images/umarket.png",
     name: "U-Market Shopping",
     description: "Angular, Spring Boot, Rest API",
     url: "https://github.com/Jugooch/U-Market",

@@ -44,9 +44,9 @@ function sendEmail(formId) {
 
       emailjs.sendForm('default_service', 'template_t4dw9kl', form, 'MvuWEKUPjd_YI_EAM')
         .then((result) => {
-            console.log('SUCCESS!', result.text);
+          alert("Email Successfully Sent!");
         }, (error) => {
-            console.log('FAILED...', error.text);
+          alert("Email Failed to Send... Please Try Again");
         });
     }
 

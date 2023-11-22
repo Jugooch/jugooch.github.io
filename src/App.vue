@@ -129,13 +129,25 @@ const uiProjects = ref([
     description: "Figma, UI/UX, Wireframes",
     url: "https://www.behance.net/gallery/180092127/AllRecipes-Redesign",
   },
+  {
+    image: "/images/Responsive-Event-Mockup.png",
+    name: "Responsive Event Website",
+    description: "Figma, UI/UX, Responsive",
+    url: "https://www.behance.net/gallery/185133781/Responsive-Event-Website",
+  },
+  {
+    image: "/images/gcu-student-app.png",
+    name: "GCU Student App Redesign",
+    description: "Figma, UI/UX, Prototyping",
+    url: "https://www.behance.net/gallery/185136569/Grand-Canyon-University-Student-App-Redesign",
+  },
 ]);
 const frontendProjects = ref([
   {
     image: "/images/personal-portfolio.png",
     name: "Personal Portfolio",
     description: "Vue, HTML, CSS",
-    url: "",
+    url: "https://github.com/Jugooch/jugooch.github.io",
   },
   {
     image: "/images/gcu-student-app.png",
@@ -150,6 +162,18 @@ const backendProjects = ref([
     name: "Minesweeper Online",
     description: "C#, .NET Core",
     url: "https://github.com/Jugooch/Milestone-CST350",
+  },
+  {
+    image: "/images/friendzone.PNG",
+    name: "FriendZone Social media",
+    description: "Java, Spring Boot, Rest API",
+    url: "https://github.com/Jugooch/FriendZone",
+  },
+  {
+    image: "/images/umarket.PNG",
+    name: "U-Market Shopping",
+    description: "Angular, Spring Boot, Rest API",
+    url: "https://github.com/Jugooch/U-Market",
   },
 ]);
 </script>

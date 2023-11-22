@@ -8,7 +8,8 @@ import Behance from "./components/icons/behance.vue";
 import Linkedin from "./components/icons/linkedin.vue";
 import download from "./components/icons/download.vue";
 import logo from "./components/icons/logo.vue";
-import Resume from "./assets/Justice_Gooch_Resume.pdf"
+import Resume from "./assets/Justice_Gooch_Resume.pdf";
+import emailjs from '@emailjs/browser';
 
 var currentTab = ref(1);
 var phone = ref("");
@@ -37,6 +38,17 @@ function scrollTo(id){
     });
   }
 }
+
+function sendEmail(formId) {
+      var form = document.getElementById(formId);
+
+      emailjs.sendForm('default_service', 'template_t4dw9kl', form, 'MvuWEKUPjd_YI_EAM')
+        .then((result) => {
+            console.log('SUCCESS!', result.text);
+        }, (error) => {
+            console.log('FAILED...', error.text);
+        });
+    }
 
 function downloadPDF() {
     // Use the imported PDF path
@@ -500,7 +512,7 @@ const backendProjects = ref([
           <h2>&lt;CONTACT&gt;</h2>
           <div style="height: 64px"></div>
           <div class="about-me">
-            <form id="contact-form" class="reactive-section">
+            <form id="contact-form" class="reactive-section"  ref="form" @submit.prevent="sendEmail('contact-form')">
               <div
                 style="
                   display: flex;
@@ -509,23 +521,25 @@ const backendProjects = ref([
                 "
               >
                 <input
-                  id="firstName"
+                  id="firstName" name="firstName"
                   class="input26"
                   placeholder="First Name"
                   required
                 />
-                <input id="lastName" class="input26" placeholder="Last Name" required/>
-                <input id="company" class="input26" placeholder="Company" />
+                <input id="lastName" name="lastName" class="input26" placeholder="Last Name" required/>
+                <input id="company" name="company" class="input26" placeholder="Company" />
                 <input
                   id="phone"
+                  name="phone"
                   class="input26"
                   v-model="phone"
                   placeholder="Phone"
                   v-on:input="acceptNumber()"
                 />
-                <input id="email" class="input63" placeholder="Email" type="email" required/>
+                <input id="email" name="email" class="input63" placeholder="Email" type="email" required/>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   placeholder="Your Message Here..."
                   style="width: 100%; height: 80px; padding: 0px"

@@ -155,6 +155,18 @@ const frontendProjects = ref([
     description: "Flutter",
     url: "https://github.com/Jugooch/gcu_student_app",
   },
+  {
+    image: "/images/dolce-vino.png",
+    name: "Dolce Vino Website",
+    description: "HTML, CSS, JavaScript",
+    url: "https://github.com/Jugooch/DolceVino",
+  },
+  {
+    image: "/images/oddspot.png",
+    name: "ODDSpot - Sports Odds",
+    description: "Vue.js, HTML, CSS, Heroku",
+    url: "https://github.com/Jugooch/cst-323-milestone",
+  },
 ]);
 const backendProjects = ref([
   {
@@ -166,7 +178,7 @@ const backendProjects = ref([
   {
     image: "/images/friendzone.png",
     name: "FriendZone Social media",
-    description: "Java, Spring Boot, Rest API",
+    description: "Java, Spring Boot, Rest APIs",
     url: "https://github.com/Jugooch/FriendZone",
   },
   {
@@ -174,6 +186,12 @@ const backendProjects = ref([
     name: "U-Market Shopping",
     description: "Angular, Spring Boot, Rest API",
     url: "https://github.com/Jugooch/U-Market",
+  },  
+  {
+    image: "/images/oddspot.png",
+    name: "ODDSpot - Sports Odds",
+    description: "C#, REST APIs, Azure",
+    url: "https://github.com/Jugooch/ODDSPOT-API",
   },
 ]);
 </script>

@@ -9,7 +9,7 @@ import Linkedin from "./components/icons/linkedin.vue";
 import download from "./components/icons/download.vue";
 import logo from "./components/icons/logo.vue";
 import Resume from "./assets/Justice_Gooch_Resume.pdf";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 var currentTab = ref(1);
 var phone = ref("");
@@ -24,7 +24,7 @@ function acceptNumber() {
     : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
 }
 
-function scrollTo(id){
+function scrollTo(id) {
   var targetElement = document.getElementById(id);
 
   if (targetElement) {
@@ -34,42 +34,44 @@ function scrollTo(id){
     // Scroll to the target element
     window.scrollTo({
       top: targetOffset,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   }
 }
 
 function sendEmail(formId) {
-      var form = document.getElementById(formId);
+  var form = document.getElementById(formId);
 
-      emailjs.sendForm('default_service', 'template_t4dw9kl', form, 'MvuWEKUPjd_YI_EAM')
-        .then((result) => {
-          alert("Email Successfully Sent!");
-        }, (error) => {
-          alert("Email Failed to Send... Please Try Again");
-        });
-    }
+  emailjs
+    .sendForm("default_service", "template_t4dw9kl", form, "MvuWEKUPjd_YI_EAM")
+    .then(
+      (result) => {
+        alert("Email Successfully Sent!");
+      },
+      (error) => {
+        alert("Email Failed to Send... Please Try Again");
+      }
+    );
+}
 
 function downloadPDF() {
-    // Use the imported PDF path
-    const pdfPath = Resume;
+  // Use the imported PDF path
+  const pdfPath = Resume;
 
-    // Open the PDF in a new tab or window
-    window.open(pdfPath, '_blank');
-  }
+  // Open the PDF in a new tab or window
+  window.open(pdfPath, "_blank");
+}
 
-function setActive(){
-  if(currentTab.value == 1){
+function setActive() {
+  if (currentTab.value == 1) {
     isUI.value = true;
     isFrontend.value = false;
     isBackend.value = false;
-  }  
-  else if(currentTab.value == 2){
+  } else if (currentTab.value == 2) {
     isUI.value = false;
     isFrontend.value = true;
     isBackend.value = false;
-  }  
-  else{
+  } else {
     isUI.value = false;
     isFrontend.value = false;
     isBackend.value = true;
@@ -167,6 +169,18 @@ const frontendProjects = ref([
     description: "Vue.js, HTML, CSS, Heroku",
     url: "https://github.com/Jugooch/cst-323-milestone",
   },
+  {
+    image: "/images/clearstack.png",
+    name: "ClearStack AI",
+    description: "Vue.js, HTML, CSS, Heroku",
+    url: "https://www.clearstack.ai",
+  },
+  {
+    image: "/images/summit.png",
+    name: "Summit Paint",
+    description: "HTML, CSS, Bootstrap",
+    url: "https://github.com/Jugooch/Summit-Paint",
+  },
 ]);
 const backendProjects = ref([
   {
@@ -186,7 +200,7 @@ const backendProjects = ref([
     name: "U-Market Shopping",
     description: "Angular, Spring Boot, Rest API",
     url: "https://github.com/Jugooch/U-Market",
-  },  
+  },
   {
     image: "/images/oddspot.png",
     name: "ODDSpot - Sports Odds",
@@ -224,7 +238,9 @@ const backendProjects = ref([
             <h3>Frontend Developer | UI Designer</h3>
             <div style="height: 64px"></div>
             <div style="display: flex; align-items: center; flex-wrap: wrap">
-              <button class="btn-primary" v-on:click="scrollTo('contact');">Contact</button>
+              <button class="btn-primary" v-on:click="scrollTo('contact')">
+                Contact
+              </button>
               <button class="btn-secondary" v-on:click="downloadPDF()">
                 <div
                   style="
@@ -262,13 +278,13 @@ const backendProjects = ref([
             <div class="social-divider"></div>
             <div class="reactive-section">
               <p style="font-size: 20px; color: white">
-                My name is Justice Gooch, and I am currently enrolled as a
-                full-time student at Grand Canyon University. I am currently a
-                senior, so I am looking for a job in either front end
-                development or product design for when I graduate! These fields
-                both interest me greatly, and I want to apply the skills I’ve
-                learned throughout college to help the development team I join
-                in any way I can. Thank you for your consideration!
+                My name is Justice Gooch, and I am a recent graduate from Grand
+                Canyon University where I got my degree in Software Development
+                and Web Design. I am looking to pursue a career in either front
+                end development or UI/UX Design! These fields both interest me
+                greatly, and I want to apply the skills I’ve learned throughout
+                college to help the team I join in any way I can. Thank you for
+                your consideration!
               </p>
             </div>
           </div>
@@ -285,7 +301,14 @@ const backendProjects = ref([
               justify-content: space-between;
             "
           >
-            <div class="portfolio-card" :class="{'portfolio-card-active': isUI}" v-on:click="currentTab = 1; setActive();">
+            <div
+              class="portfolio-card"
+              :class="{ 'portfolio-card-active': isUI }"
+              v-on:click="
+                currentTab = 1;
+                setActive();
+              "
+            >
               <div align="center" style="width: 100%">
                 <img
                   src="./assets/images/ui-design.png"
@@ -321,7 +344,14 @@ const backendProjects = ref([
                 </div>
               </div>
             </div>
-            <div class="portfolio-card" :class="{'portfolio-card-active': isFrontend}" v-on:click="currentTab = 2; setActive();">
+            <div
+              class="portfolio-card"
+              :class="{ 'portfolio-card-active': isFrontend }"
+              v-on:click="
+                currentTab = 2;
+                setActive();
+              "
+            >
               <div align="center" style="width: 100%">
                 <img
                   src="./assets/images/frontend.png"
@@ -356,7 +386,14 @@ const backendProjects = ref([
                 </div>
               </div>
             </div>
-            <div class="portfolio-card" :class="{'portfolio-card-active': isBackend}" v-on:click="currentTab = 3; setActive();">
+            <div
+              class="portfolio-card"
+              :class="{ 'portfolio-card-active': isBackend }"
+              v-on:click="
+                currentTab = 3;
+                setActive();
+              "
+            >
               <div align="center" style="width: 100%">
                 <img
                   src="./assets/images/backend.png"
@@ -403,28 +440,21 @@ const backendProjects = ref([
               background-color: #226ce0;
             "
           ></div>
-          <div v-if="currentTab == 1" 
-            class="skill-wrap">
+          <div v-if="currentTab == 1" class="skill-wrap">
             <div class="skill-pill" v-for="skill in uiSkills">
               <p style="font-size: 20px; font-weight: 400; color: white">
                 {{ skill }}
               </p>
             </div>
           </div>
-          <div
-            v-else-if="currentTab == 2"
-            class="skill-wrap"
-          >
+          <div v-else-if="currentTab == 2" class="skill-wrap">
             <div class="skill-pill" v-for="skill in frontendSkills">
               <p style="font-size: 20px; font-weight: 400; color: white">
                 {{ skill }}
               </p>
             </div>
           </div>
-          <div
-            class="skill-wrap"
-            v-else-if="currentTab == 3"
-          >
+          <div class="skill-wrap" v-else-if="currentTab == 3">
             <div class="skill-pill" v-for="skill in backendSkills">
               <p style="font-size: 20px; font-weight: 400; color: white">
                 {{ skill }}
@@ -554,7 +584,12 @@ const backendProjects = ref([
           <h2>&lt;CONTACT&gt;</h2>
           <div style="height: 64px"></div>
           <div class="about-me">
-            <form id="contact-form" class="reactive-section"  ref="form" @submit.prevent="sendEmail('contact-form')">
+            <form
+              id="contact-form"
+              class="reactive-section"
+              ref="form"
+              @submit.prevent="sendEmail('contact-form')"
+            >
               <div
                 style="
                   display: flex;
@@ -563,13 +598,25 @@ const backendProjects = ref([
                 "
               >
                 <input
-                  id="firstName" name="firstName"
+                  id="firstName"
+                  name="firstName"
                   class="input26"
                   placeholder="First Name"
                   required
                 />
-                <input id="lastName" name="lastName" class="input26" placeholder="Last Name" required/>
-                <input id="company" name="company" class="input26" placeholder="Company" />
+                <input
+                  id="lastName"
+                  name="lastName"
+                  class="input26"
+                  placeholder="Last Name"
+                  required
+                />
+                <input
+                  id="company"
+                  name="company"
+                  class="input26"
+                  placeholder="Company"
+                />
                 <input
                   id="phone"
                   name="phone"
@@ -578,7 +625,14 @@ const backendProjects = ref([
                   placeholder="Phone"
                   v-on:input="acceptNumber()"
                 />
-                <input id="email" name="email" class="input63" placeholder="Email" type="email" required/>
+                <input
+                  id="email"
+                  name="email"
+                  class="input63"
+                  placeholder="Email"
+                  type="email"
+                  required
+                />
                 <textarea
                   id="message"
                   name="message"
@@ -586,12 +640,16 @@ const backendProjects = ref([
                   placeholder="Your Message Here..."
                   style="width: 100%; height: 80px; padding: 0px"
                 ></textarea>
-                <button class="btn-primary" style="margin-bottom: 64px" type="submit">
+                <button
+                  class="btn-primary"
+                  style="margin-bottom: 64px"
+                  type="submit"
+                >
                   Send Message
                 </button>
               </div>
             </form>
-            <div class="social-divider" style="margin-bottom: 16px;"></div>
+            <div class="social-divider" style="margin-bottom: 16px"></div>
             <div class="social-icons">
               <a href="https://www.linkedin.com/in/justicegooch/"
                 ><Linkedin
@@ -605,41 +663,63 @@ const backendProjects = ref([
             </div>
           </div>
         </div>
-      <div class="vertical-spacing"></div>
+        <div class="vertical-spacing"></div>
       </main>
       <footer>
         <div class="footer">
           <div class="logo">
             <logo />
           </div>
-          <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <button class="link" style="margin-bottom: 16px;" v-on:click="scrollTo('about')">About</button>
-            <button class="link" style="margin-bottom: 16px;" v-on:click="scrollTo('portfolio')">Portfolio</button>
-            <button class="link"  v-on:click="scrollTo('contact')">Contact</button>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <button
+              class="link"
+              style="margin-bottom: 16px"
+              v-on:click="scrollTo('about')"
+            >
+              About
+            </button>
+            <button
+              class="link"
+              style="margin-bottom: 16px"
+              v-on:click="scrollTo('portfolio')"
+            >
+              Portfolio
+            </button>
+            <button class="link" v-on:click="scrollTo('contact')">
+              Contact
+            </button>
           </div>
           <div>
-            <button class="link" v-on:click="scrollTo('top')">^Back To Top</button>
+            <button class="link" v-on:click="scrollTo('top')">
+              ^Back To Top
+            </button>
           </div>
         </div>
       </footer>
-      <div style="height: 64px;"></div>
+      <div style="height: 64px"></div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.link {
+  border: none;
+  background-color: #1b1725;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+}
 
-.link{
-    border: none;
-    background-color: #1b1725;
-    color: white;
-    font-weight: 600;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-.skill-wrap{
-  display: flex; 
+.skill-wrap {
+  display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
@@ -647,7 +727,7 @@ const backendProjects = ref([
   width: 100%;
 }
 
-a{
+a {
   color: white;
   text-decoration: none;
 }
@@ -655,7 +735,7 @@ a{
 .logo img {
   max-width: 48px; /* Adjust based on your design */
 }
-.footer{
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -665,7 +745,8 @@ a{
   width: 100%;
 }
 
-input, textarea {
+input,
+textarea {
   background-color: #1b1725;
   border: none;
   border-bottom: 2px solid white;
@@ -915,8 +996,8 @@ h3 {
     width: 70%;
   }
 
-  .skill-wrap{
-    display: flex; 
+  .skill-wrap {
+    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: left;

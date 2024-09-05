@@ -1,145 +1,98 @@
-<!-- Navbar.vue -->
-
 <template>
-    <nav class="navbar">
-      <div class="navbar-container">
-        <!-- Left-aligned logo -->
-        <div class="logo">
-            <LogoComponent />
-        </div>
-  
-        <!-- Right-aligned links -->
-        <div class="links">
-          <button @click="scrollTo('about')">About</button>
-          <button @click="scrollTo('portfolio')">Portfolio</button>
-          <button @click="scrollTo('contact')">Contact</button>
-        </div>
-  
-        <!-- Hamburger menu for smaller screens -->
-        <div class="hamburger-menu" @click="toggleMenu">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-  
-        <!-- Responsive menu for smaller screens -->
-        <div v-if="showMenu" class="responsive-menu">
-          <button @click="closeMenu, scrollTo('about')">About</button>
-          <button @click="closeMenu, scrollTo('portfolio')">Portfolio</button>
-          <button @click="closeMenu, scrollTo('contact')">Contact</button>
-        </div>
-      </div>
-    </nav>
-  </template>
-  
-  <script>
-  import LogoComponent from './icons/logo.vue';
+  <nav class="navbar">
+    <router-link :to="{ name: 'Home' }" class="nav-item" active-class="active">
+      <Helmet v-if="currentTab === 'home'" class="helmet" />
+      <h5>Home</h5>
+    </router-link>
+    <router-link :to="{ name: 'About' }" class="nav-item" active-class="active">
+      <Helmet v-if="currentTab === 'about'" class="helmet" />
+      <h5>About Me</h5>
+    </router-link>
+    <router-link :to="{ name: 'Projects' }" class="nav-item" active-class="active">
+      <Helmet v-if="currentTab === 'projects'" class="helmet" />
+      <h5>Projects</h5>
+    </router-link>
+    <router-link :to="{ name: 'Contact' }" class="nav-item" active-class="active">
+      <Helmet v-if="currentTab === 'contact'" class="helmet" />
+      <h5>Contact</h5>
+    </router-link>
+  </nav>
+</template>
 
-  export default {
-    components: {
-        LogoComponent,
-    } ,
-    data() {
-      return {
-        showMenu: false,
+<script>
+import Helmet from '@/components/static-illustrations/Helmet.vue'; // Import your Helmet component
+
+export default {
+  components: {
+    Helmet, // Register your Helmet component
+  },
+  data() {
+    return {
+      currentTab: 'home', // Default tab
+    };
+  },
+  watch: {
+    // Watch the route and update the active tab based on the current route
+    $route(to) {
+      this.updateCurrentTab(to.name);
+    },
+  },
+  mounted() {
+    // Set the initial tab based on the current route
+    this.updateCurrentTab(this.$route.name);
+  },
+  methods: {
+    updateCurrentTab(tabName) {
+      // Map route names to tab names
+      const tabMap = {
+        Home: 'home',
+        About: 'about',
+        Projects: 'projects',
+        Contact: 'contact',
       };
+      this.currentTab = tabMap[tabName] || 'home'; // Default to 'home'
     },
-    methods: {
-      toggleMenu() {
-        this.showMenu = !this.showMenu;
-      },
-      closeMenu() {
-        this.showMenu = false;
-      },
-      scrollTo(id){
-        var targetElement = document.getElementById(id);
+  },
+};
+</script>
 
-        if (targetElement) {
-          // Calculate the offset of the target element
-          var targetOffset = targetElement.offsetTop;
+<style scoped>
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 72px;
+  position: relative;
+  padding: 64px;
+}
 
-          // Scroll to the target element
-          window.scrollTo({
-            top: targetOffset,
-            behavior: 'smooth',
-          });
-        }
-      }
-    },
-  };
-  </script>
-  
-  <style scoped>
-  /* Add your styles here */
+.nav-item {
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: none;
+}
 
-  button{
-    border: none;
-    background-color: #1b1725;
-    color: white;
-    font-weight: 600;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .navbar {
-    color: #fff;
-    padding-top: 16px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo img {
-    max-width: 48px; /* Adjust based on your design */
-  }
-  
-  .links {
-    display: flex;
-    gap: 64px;
-  }
-  
-  .links a {
-    text-decoration: none;
-    color: #fff;
-  }
-  
-  /* Hamburger menu styles */
-  .hamburger-menu {
-    display: none;
-    cursor: pointer;
-  }
-  
-  .bar {
-    height: 3px;
-    width: 25px;
-    background-color: #fff;
-    margin: 6px 0;
-  }
-  
-  /* Responsive menu styles */
-  .responsive-menu {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 10px;
-    background-color: #333;
-    border: 1px solid #fff;
-    padding: 10px;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .hamburger-menu {
-      display: block;
-    }
-  
-    .links {
-      display: none;
-    }
-  }
-  </style>
+.nav-item h5 {
+  margin: 0;
+}
+
+.nav-item.active h5 {
+  /* Change color of active tab */
+  color: #9747FF;
+}
+
+/* Style for the helmet icon */
+.helmet {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Add hover effect to the h5 text */
+.nav-item h5:hover {
+  color: #cccccc;
+}
+</style>

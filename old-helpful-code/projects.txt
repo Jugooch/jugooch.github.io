@@ -1,0 +1,102 @@
+const uiProjects = ref([
+  {
+    image: "/images/natgeo-mockup.png",
+    name: "Nat-Geo Redesign",
+    description: "Figma, UI/UX, Prototyping",
+    url: "https://www.behance.net/gallery/183185371/National-Geographic-Redesign",
+  },
+  {
+    image: "/images/neubrutalism-landing-page.png",
+    name: "Neubrutalism Landing Page",
+    description: "Figma, UI/UX, Icon Design",
+    url: "https://www.behance.net/gallery/183186019/Neubrutalism-Landing-Page",
+  },
+  {
+    image: "/images/soundoff.png",
+    name: "Sound-Off Case Study",
+    description: "Adobe XD, UI/UX, User Testing",
+    url: "https://www.behance.net/gallery/169087427/SoundOff-Case-Study",
+  },
+  {
+    image: "/images/allrecipes-redesign.png",
+    name: "AllRecipes Redesign",
+    description: "Figma, UI/UX, Wireframes",
+    url: "https://www.behance.net/gallery/180092127/AllRecipes-Redesign",
+  },
+  {
+    image: "/images/Responsive-Event-Mockup.png",
+    name: "Responsive Event Website",
+    description: "Figma, UI/UX, Responsive",
+    url: "https://www.behance.net/gallery/185133781/Responsive-Event-Website",
+  },
+  {
+    image: "/images/gcu-student-app.png",
+    name: "GCU Student App Redesign",
+    description: "Figma, UI/UX, Prototyping",
+    url: "https://www.behance.net/gallery/185136569/Grand-Canyon-University-Student-App-Redesign",
+  },
+]);
+const frontendProjects = ref([
+  {
+    image: "/images/personal-portfolio.png",
+    name: "Personal Portfolio",
+    description: "Vue, HTML, CSS",
+    url: "https://github.com/Jugooch/jugooch.github.io",
+  },
+  {
+    image: "/images/gcu-student-app.png",
+    name: "GCU Student App Redesign",
+    description: "Flutter",
+    url: "https://github.com/Jugooch/gcu_student_app",
+  },
+  {
+    image: "/images/dolce-vino.png",
+    name: "Dolce Vino Website",
+    description: "HTML, CSS, JavaScript",
+    url: "https://github.com/Jugooch/DolceVino",
+  },
+  {
+    image: "/images/oddspot.png",
+    name: "ODDSpot - Sports Odds",
+    description: "Vue.js, HTML, CSS, Heroku",
+    url: "https://github.com/Jugooch/cst-323-milestone",
+  },
+  {
+    image: "/images/clearstack.png",
+    name: "ClearStack AI",
+    description: "Vue.js, HTML, CSS, Heroku",
+    url: "https://www.clearstack.ai",
+  },
+  {
+    image: "/images/summit.png",
+    name: "Summit Paint",
+    description: "HTML, CSS, Bootstrap",
+    url: "https://github.com/Jugooch/Summit-Paint",
+  },
+]);
+const backendProjects = ref([
+  {
+    image: "/images/minesweeper.PNG",
+    name: "Minesweeper Online",
+    description: "C#, .NET Core",
+    url: "https://github.com/Jugooch/Milestone-CST350",
+  },
+  {
+    image: "/images/friendzone.png",
+    name: "FriendZone Social media",
+    description: "Java, Spring Boot, Rest APIs",
+    url: "https://github.com/Jugooch/FriendZone",
+  },
+  {
+    image: "/images/umarket.png",
+    name: "U-Market Shopping",
+    description: "Angular, Spring Boot, Rest API",
+    url: "https://github.com/Jugooch/U-Market",
+  },
+  {
+    image: "/images/oddspot.png",
+    name: "ODDSpot - Sports Odds",
+    description: "C#, REST APIs, Azure",
+    url: "https://github.com/Jugooch/ODDSPOT-API",
+  },
+]);

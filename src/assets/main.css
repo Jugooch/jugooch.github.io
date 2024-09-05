@@ -1,3 +1,72 @@
-body {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Mansalva&family=Quicksand:wght@300..700&display=swap');
+
+/* Color Variables */
+
+:root {
+    --primaryBlue: #226CE0;
+    --primaryPurple: #9747FF;
+    --black: #050505;
+    --white: #fff;
+    --cardBackground: #1A1A1A;
+}
+
+/* Base Page Styling */
+body, html {
+    margin: 0px;
+    background-color: var(--black);
+}
+
+/* Primary Text Styling */
+
+h1 {
+    font-size: 64px;
+    font-family: "Mansalva", sans-serif;
+    color: var(--white);
+}
+
+h2 {
+    font-size: 40px;
+    font-family: "Quicksand", sans-serif;    
+    color: var(--white);
+
+}
+
+h3 {
+    font-size: 24px;
+    font-family: "Quicksand", sans-serif;
+    color: var(--white);
+
+}
+
+h4 {
+    font-size: 20px;
+    font-family: "Quicksand", sans-serif;
+    color: var(--white);
+
+}
+
+h5 {
+    font-size: 20px;
+    font-family: "Mansalva", sans-serif;
+    color: var(--white);
+
+}
+
+p {
+    font-size: 20px;    
+    font-family: "Quicksand", sans-serif;
+    color: var(--white);
+
+}
+
+/*------------------------------------------*/
+
+/* Secondary Text Styling */
+
+.small {
+    font-size: 16px;
+}
+
+.highlight {
+    color: var(--primaryBlue);
 }

@@ -1,0 +1,6 @@
+<form
+    id="contact-form"
+    ref="form"
+    @submit.prevent="sendEmail('contact-form')"
+>
+</form>

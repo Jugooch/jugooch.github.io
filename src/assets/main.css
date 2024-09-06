@@ -3,11 +3,18 @@
 /* Color Variables */
 
 :root {
+    /* Primary Colors */
     --primaryBlue: #226CE0;
     --primaryPurple: #9747FF;
     --black: #050505;
     --white: #fff;
     --cardBackground: #1A1A1A;
+
+    /* Hover Colors */
+    --primaryPurpleHovered: #7D1AFF;
+    --primaryBlueHovered: #164A9D;
+    --blackHovered: #333333;
+    --whiteHovered: #BFBFBF;
 }
 
 /* Base Page Styling */
@@ -42,7 +49,7 @@ h4 {
     font-size: 20px;
     font-family: "Quicksand", sans-serif;
     color: var(--white);
-
+    font-weight: 700;
 }
 
 h5 {
@@ -56,7 +63,7 @@ p {
     font-size: 20px;    
     font-family: "Quicksand", sans-serif;
     color: var(--white);
-
+    font-weight: 200;
 }
 
 /*------------------------------------------*/
@@ -69,4 +76,62 @@ p {
 
 .highlight {
     color: var(--primaryBlue);
+}
+
+/*------------------------------------------*/
+
+/* Button Styling */
+.btn {
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: "Quicksand", sans-serif;
+}
+
+.primary-btn {
+    color: var(--white);
+    background-color: var(--primaryPurple);
+    border: 1px solid var(--primaryPurple);
+}
+
+.primary-btn:hover {
+    color: var(--white);
+    background-color: var(--primaryPurpleHovered);
+    border: 1px solid var(--primaryPurpleHovered);
+}
+
+.secondary-btn {
+    color: var(--white);
+    background-color: transparent;
+    border: 1px solid var(--white);
+}
+
+.secondary-btn:hover {
+    border-color: var(--whiteHovered);
+    color: var(--whiteHovered);
+}
+
+.tertiary-btn {
+    color: var(--white);
+    background-color: var(--black);
+    border: 1px solid var(--black);
+}
+
+.tertiary-btn:hover {
+    background-color: var(--blackHovered);
+}
+
+/*------------------------------------------*/
+
+/* Layout Styling */
+.hero-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 0;
+}
+
+.hero-top-right {
+    position: absolute;
+    top: 64px;
+    right: 64px;
 }

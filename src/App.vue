@@ -5,14 +5,8 @@
 
     <!-- Overlaying Content -->
     <div class="content-overlay">
-      <div class="hero-container">
-      <header>
-        <navbar />
-      </header>
-      <div></div>
-    </div>
       <main>
-        <!-- Your main content (projects, etc.) goes here -->
+        <!-- This router view shows the main pages (Created in router/index.js) -->
         <router-view />
       </main>
     </div>
@@ -21,7 +15,6 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import Navbar from "./components/navbar.vue";
 // Import other components as needed
 
 const spaceCanvas = ref(null);
@@ -29,15 +22,16 @@ const spaceCanvas = ref(null);
 onMounted(() => {
   const canvas = spaceCanvas.value;
   const ctx = canvas.getContext("2d");
-  
-  // Set canvas size
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+
+  // Set canvas width and height to match the content height
+  canvas.width = document.body.scrollWidth;
+  canvas.height = document.body.scrollHeight;
 
   // Handle window resize
   window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Set canvas width and height to match the content height
+    canvas.width = document.body.scrollWidth;
+    canvas.height = document.body.scrollHeight;
     // Redraw stars on resize
     drawStars(); 
   });
@@ -74,11 +68,6 @@ onMounted(() => {
   top: 0;
   left: 0;
   z-index: 0; 
-}
-
-.hero-container {
-  height: 100vh;
-  width: 100%;
 }
 
 .content-overlay {

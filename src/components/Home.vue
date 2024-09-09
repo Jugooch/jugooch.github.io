@@ -7,7 +7,7 @@
       <p>Software Developer | UI Designer</p>
       <div class="d-flex flex-row gap-2 justify-content-center">
         <button class="btn primary-btn">Hire Me</button>
-        <button class="btn secondary-btn">See Resume</button>
+        <button class="btn secondary-btn" v-on:click="downloadPDF()">See Resume</button>
       </div>
     </div>
     <div class="align-self-center">
@@ -85,7 +85,10 @@
         <button class="btn primary-btn">Contact Me</button>
       </div>
       <div class="col-5 contact-form-container">
-        <form class="d-flex flex-column gap-4">
+        <form class="d-flex flex-column gap-4"
+              id="contact-form"
+              ref="form"
+              @submit.prevent="sendEmail('contact-form')">
           <input class="input-txt" type="text" placeholder="Name..." />
           <input class="input-txt" type="text" placeholder="Email..." />
           <textarea class="input-txt" type="text" placeholder="Message..."></textarea>
@@ -112,6 +115,34 @@ import Spaceship from "./static-illustrations/Spaceship.vue";
 import Satellite from "./static-illustrations/Satellite.vue";
 import Planet from "./static-illustrations/Planet.vue";
 import BlackHole from "./static-illustrations/BlackHole.vue";
+
+// Files
+import Resume from "../assets/Justice_Gooch_Resume.pdf";
+import emailjs from "@emailjs/browser";
+
+function downloadPDF() {
+  // Use the imported PDF path
+  const pdfPath = Resume;
+
+  // Open the PDF in a new tab or window
+  window.open(pdfPath, "_blank");
+}
+
+function sendEmail(formId) {
+  var form = document.getElementById(formId);
+
+  emailjs
+      .sendForm("default_service", "template_t4dw9kl", form, "MvuWEKUPjd_YI_EAM")
+      .then(
+          (result) => {
+            alert("Email Successfully Sent!");
+          },
+          (error) => {
+            console.log(error);
+            alert("Email Failed to Send... Please Try Again");
+          }
+      );
+}
 
 </script>
 

@@ -91,7 +91,7 @@ export default {
   transform: translateX(-50%);
 }
 
-/* Add hover effect to the h5 text */
+/* Add hover effect text inside the nav routes */
 .nav-item h5:hover {
   color: #cccccc;
 }

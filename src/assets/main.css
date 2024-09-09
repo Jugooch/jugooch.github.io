@@ -9,6 +9,7 @@
     --black: #050505;
     --white: #fff;
     --cardBackground: #1A1A1A;
+    --input: #BFBFBF;
 
     /* Hover Colors */
     --primaryPurpleHovered: #7D1AFF;
@@ -26,7 +27,7 @@ body, html {
 /* Primary Text Styling */
 
 h1 {
-    font-size: 64px;
+    font-size: 56px;
     font-family: "Mansalva", sans-serif;
     color: var(--white);
 }
@@ -60,7 +61,7 @@ h5 {
 }
 
 p {
-    font-size: 20px;    
+    font-size: 16px;    
     font-family: "Quicksand", sans-serif;
     color: var(--white);
     font-weight: 200;
@@ -71,7 +72,7 @@ p {
 /* Secondary Text Styling */
 
 .small {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .highlight {
@@ -134,4 +135,26 @@ p {
     position: absolute;
     top: 64px;
     right: 64px;
+}
+
+.vertical-spacing{
+    height: 128px;
+}
+
+/*------------------------------------------*/
+
+/* Input Styling */
+.input-txt {
+    border: 1px solid var(--input);
+    border-radius: 4px;
+    color: var(--black);
+    font-size: 16px;
+    font-family: "Quicksand", sans-serif;
+    padding: 8px;
+}
+
+.input-txt::placeholder {
+    color: var(--input);
+    font-size: 16px;
+    font-family: "Quicksand", sans-serif;
 }

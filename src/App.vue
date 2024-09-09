@@ -9,13 +9,38 @@
         <!-- This router view shows the main pages (Created in router/index.js) -->
         <router-view />
       </main>
+      <footer>  
+        <!--Vertical Spacing-->
+        <div class="vertical-spacing"></div>
+        <!--Vertical Spacing-->
+        <div class="vertical-spacing"></div>
+        <!--Footer-->
+        <div class="container d-flex flex-column gap-4 col-4 align-items-center">
+          <div class="d-flex gap-4">
+            <LinkedIn />
+            <Github />
+            <Indeed />
+            <Instagram />
+          </div>
+          <p>Created by <b>Justice Gooch</b></p>
+          <Earth />
+        </div>
+      </footer>
     </div>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
-// Import other components as needed
+
+//Icons
+import Github from "./components/icons/github.vue";
+import LinkedIn from "./components/icons/linkedin.vue";
+import Indeed from "./components/icons/indeed.vue";
+import Instagram from "./components/icons/instagram.vue";
+
+//Illustrations
+import Earth from "./components/static-illustrations/Earth.vue"
 
 const spaceCanvas = ref(null);
 

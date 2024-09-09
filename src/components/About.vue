@@ -1,29 +1,50 @@
 <template>
   <div class="hero-container d-flex flex-column justify-content-between">
     <navbar />
-    <Planet class="hero-top-right" />
-    <div class="d-flex flex-column gap-2 align-self-center" style="text-align: center">
-      <h2>Hi, I'm <span class="highlight">Justice Gooch</span></h2>
-      <p>Software Developer | UI Designer</p>
-      <div class="d-flex flex-row gap-2 justify-content-center">
-        <button class="btn primary-btn">Hire Me</button>
-        <button class="btn secondary-btn">See Resume</button>
+    <Spaceship2 class="hero-top-right spaceship" />
+    <!--About me Section-->
+    <div class="about-me d-flex flex-column align-items-center">
+      <h1 class="highlight">About Me</h1>
+      <div class="d-flex col-8 justify-content-between flex-wrap mt-5">
+        <div class="col-4"></div>
+        <div class="d-flex flex-column col-4 gap-4">
+          <div class="d-flex gap-4">
+            <LinkedIn />
+            <Github />
+            <Indeed />
+            <Instagram />
+          </div>
+          <h4>My name is Justice Gooch</h4>
+          <p>I am a Software developer and UI designer who graduated from Grand Canyon University in 2024. Since then, I
+            have held full-time and contract positions for multiple companies outlined in the experience section below.
+            <br />
+            <br />
+            My focus when creating applications has been on retaining users. I want users to look at the product I have
+            created and think to themselves “Wow! That was a great experience, I can’t wait to use XYZ again!”. </p>
+        </div>
       </div>
     </div>
-    <div class="align-self-center">
-      <!-- TODO: Replace with Rive animation Alien-->
-      <Alien />
+    <!--Vertical Spacing-->
+    <div class="vertical-spacing"></div>
+    <!--Skills Section-->
+    <div class="d-flex flex-column gap-4">
+      <div class="d-flex gap-2">
+        <TitlePlanet />
+        <h5>My Skills</h5>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 
-import Planet from "./static-illustrations/Planet.vue";
+import Spaceship2 from "./static-illustrations/Spaceship2.vue";
+import TitlePlanet from "./static-illustrations/TitlePlanet.vue";
 import Navbar from "./navbar.vue";
-import Alien from "./static-illustrations/Alien.vue";
 </script>
 
 <style scoped>
-
+.spaceship {
+  width: 40%;
+}
 </style>

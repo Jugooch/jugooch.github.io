@@ -30,6 +30,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      // Return saved position for popstate navigations
+      return savedPosition;
+    } else {
+      // Scroll to the top for new navigations
+      return { top: 0, left: 0 };
+    }
+  },
 });
 
 export default router;

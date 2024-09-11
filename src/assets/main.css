@@ -24,6 +24,7 @@ body, html {
     background-color: var(--black);
     color: var(--white);
     font-family: "Quicksand", sans-serif;
+    scroll-behavior: auto !important;
 }
 
 /* Primary Text Styling */
@@ -67,6 +68,49 @@ p {
     font-family: "Quicksand", sans-serif;
     color: var(--white);
     font-weight: 200;
+}
+
+@media(max-width: 768px) {
+    h1 {
+        font-size: 48px;
+        font-family: "Mansalva", sans-serif;
+        color: var(--white);
+    }
+
+    h2 {
+        font-size: 32px;
+        font-family: "Quicksand", sans-serif;
+        color: var(--white);
+
+    }
+
+    h3 {
+        font-size: 20px;
+        font-family: "Quicksand", sans-serif;
+        color: var(--white);
+
+    }
+
+    h4 {
+        font-size: 16px;
+        font-family: "Quicksand", sans-serif;
+        color: var(--white);
+        font-weight: 700;
+    }
+
+    h5 {
+        font-size: 16px;
+        font-family: "Mansalva", sans-serif;
+        color: var(--white);
+
+    }
+
+    p {
+        font-size: 14px;
+        font-family: "Quicksand", sans-serif;
+        color: var(--white);
+        font-weight: 200;
+    }
 }
 
 /*------------------------------------------*/
@@ -137,10 +181,25 @@ p {
     position: absolute;
     top: 64px;
     right: 64px;
+    z-index: -1;
 }
 
 .vertical-spacing{
     height: 128px;
+}
+
+@media (max-width: 1200px) {
+    .hero-top-right {
+        top: 32px;
+        right: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-top-right {
+        top: -16px;
+        right: -64px;
+    }
 }
 
 /*------------------------------------------*/
@@ -220,5 +279,38 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 565px) {
+    .card-large {
+        width: 300px;
+    }
+
+    .card-small {
+        background-color: var(--cardBackground);
+        padding: 16px;
+        border-radius: 4px;
+    }
+
+    .card-wrapper {
+        width: 300px;
+        height: 480px;
+    }
+}
+
+.svg {
+    width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .svg {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .svg {
+        width: 80%;
+    }
 }
 

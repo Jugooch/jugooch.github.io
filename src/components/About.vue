@@ -1,26 +1,29 @@
 <template>
-  <div class="hero-container d-flex flex-column justify-content-between">
+  <div class="hero-container about-container d-flex flex-column justify-content-between">
     <navbar />
     <Spaceship2 class="hero-top-right spaceship" />
     <!--About me Section-->
     <div class="about-me d-flex flex-column align-items-center">
       <h1 class="highlight">About Me</h1>
-      <div class="d-flex col-8 justify-content-between flex-wrap mt-5">
-        <div class="col-4"></div>
-        <div class="d-flex flex-column col-4 gap-4">
-          <div class="d-flex gap-4">
-            <LinkedIn />
-            <Github />
-            <Indeed />
-            <Instagram />
+      <div class="container col-8 mt-5">
+        <div class="row flex-wrap">
+          <div class="col-md-6 col-lg-6 col-sm-12 mb-4"><img src="../assets/images/me.png" class="img-fluid about-img"/></div>
+          <div class="col-md-1 col-lg-1 d-none d-md-block"></div>
+          <div class="d-flex flex-column col-md-5 col-lg-5 col-sm-12 gap-4 align-items-center align-items-md-start">
+            <div class="d-flex gap-4">
+              <LinkedIn />
+              <Github />
+              <Indeed />
+              <Instagram />
+            </div>
+            <h4>My name is Justice Gooch</h4>
+            <p>I am a Software developer and UI designer who graduated from Grand Canyon University in 2024. Since then, I
+              have held full-time and contract positions for multiple companies outlined in the experience section below.
+              <br />
+              <br />
+              My focus when creating applications has been on retaining users. I want users to look at the product I have
+              created and think to themselves “Wow! That was a great experience, I can’t wait to use XYZ again!”. </p>
           </div>
-          <h4>My name is Justice Gooch</h4>
-          <p>I am a Software developer and UI designer who graduated from Grand Canyon University in 2024. Since then, I
-            have held full-time and contract positions for multiple companies outlined in the experience section below.
-            <br />
-            <br />
-            My focus when creating applications has been on retaining users. I want users to look at the product I have
-            created and think to themselves “Wow! That was a great experience, I can’t wait to use XYZ again!”. </p>
         </div>
       </div>
     </div>
@@ -78,6 +81,10 @@ import Navbar from "./navbar.vue";
 import SkillsCard from "./subcomponents/SkillsCard.vue";
 import ExperienceCard from "./subcomponents/ExperienceCard.vue";
 import EducationCard from "./subcomponents/EducationCard.vue";
+import Instagram from "./icons/instagram.vue";
+import LinkedIn from "./icons/linkedin.vue";
+import Indeed from "./icons/indeed.vue";
+import Github from "./icons/github.vue";
 
 // Skills Data
 var skills = [
@@ -184,5 +191,19 @@ var education = [
 <style scoped>
 .spaceship {
   width: 40%;
+}
+@media(max-width: 770px){
+  .about-container {
+    text-align: center;
+    height: auto;
+  }
+}
+
+
+.about-img {
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 </style>

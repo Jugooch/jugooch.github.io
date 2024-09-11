@@ -121,8 +121,8 @@ var projects = [
 
 .projects-content {
   position: relative;
-  z-index: 2;
   /* Place content on top of the black hole SVG */
+  z-index: 2;
   text-align: center;
 }
 

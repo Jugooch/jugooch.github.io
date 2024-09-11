@@ -15,7 +15,7 @@
         <!--Vertical Spacing-->
         <div class="vertical-spacing"></div>
         <!--Footer-->
-        <div class="container d-flex flex-column gap-4 col-4 align-items-center">
+        <div class="container d-flex flex-column gap-4 col-6 align-items-center">
           <div class="d-flex gap-4">
             <LinkedIn />
             <Github />

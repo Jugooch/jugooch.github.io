@@ -1,41 +1,46 @@
 <template>
   <!--Contact Section-->
-  <div class="hero-container d-flex flex-column justify-content-between">
+  <div class="hero-container contact-container">
     <navbar />
+    <h1 class="highlight mt-5">Contact</h1>
     <div class="satellite-container">
       <Satellite class="satellite" />
     </div>
-    <!--Vertical Spacing-->
-    <div class="contact d-flex flex-column align-items-center">
-      <h1 class="highlight">Contact</h1>
-      <div class="d-flex col-8 justify-content-between flex-wrap mt-5">
-        <div class="d-flex flex-column col-4 gap-4">
-          <div class="d-flex gap-4">
-            <LinkedIn />
-            <Github />
-            <Indeed />
-            <Instagram />
+    <!--Contact Section-->
+    <div class="contact d-flex flex-column">
+      <Satellite class="satellite" />
+      <div class="container col-10 col-8-md mt-5">
+        <div class="row flex-wrap">
+          <div class="col-md-5 col-lg-5 col-12 d-flex flex-column gap-4">
+            <div class="d-flex gap-2 gap-md-4 justify-content-center justify-content-md-start">
+              <LinkedIn />
+              <Github />
+              <Indeed />
+              <Instagram />
+            </div>
+            <p>Thanks for viewing my portfolio! You can leave me a message at my work-related email or submit the contact form!</p>
+            <div class="d-flex flex-column">
+              <h4>Email:</h4>
+              <p>justicegooch@gmail.com</p>
+            </div>
+            <router-link :to="{ name: 'Contact' }" class="btn primary-btn">Contact Me</router-link>
           </div>
-          <p>Thanks for viewing my portfolio! You can leave me a message at my work-related email or submit the contact form!</p>
-          <div class="d-flex flex-column">
-            <h4>Email:</h4>
-            <p>justicegooch@gmail.com</p>
+          <div class="col-md-1 col-lg-1 d-none d-md-block"></div>
+          <div class="col-md-6 col-lg-6 col-12 contact-form-container mt-5 mt-md-0">
+            <form class="d-flex flex-column gap-4"
+                  id="contact-form"
+                  ref="form"
+                  @submit.prevent="sendEmail('contact-form')">
+              <input class="input-txt" type="text" placeholder="Name..." />
+              <input class="input-txt" type="text" placeholder="Email..." />
+              <textarea class="input-txt" type="text" placeholder="Message..."></textarea>
+              <button class="btn tertiary-btn" type="submit">Submit</button>
+            </form>
           </div>
-        </div>
-        <div class="col-5 contact-form-container">
-          <form class="d-flex flex-column gap-4"
-                id="contact-form"
-                ref="form"
-                @submit.prevent="sendEmail('contact-form')">
-            <input class="input-txt" type="text" placeholder="Name..." />
-            <input class="input-txt" type="text" placeholder="Email..." />
-            <textarea class="input-txt" type="text" placeholder="Message..."></textarea>
-            <button class="btn tertiary-btn" type="submit">Submit</button>
-          </form>
         </div>
       </div>
     </div>
-    <div class="vertical-spacing"></div>
+    <div></div>
   </div>
 </template>
 
@@ -52,19 +57,55 @@ import Github from "./icons/github.vue";
 </script>
 
 <style scoped>
-.satellite-container {
-  position: absolute;
-  top: 32px;
-  right: 32px;
+
+.contact-container {
+  text-align: center;
+  height: 100%;
+}
+
+.contact {
+  text-align: start;
+}
+
+@media(max-width: 770px){
+  .contact {
+    text-align: center;
+  }
 }
 
 .satellite {
-  width: 100%;
-  height: auto;
-  max-width: 600px;
-  object-fit: contain;
+  position: absolute;
+  top: 96px;
+  right: 64px;
+  z-index: -1;
 }
 
+@media(max-width: 1150px){
+  .satellite {
+    width: 40%;
+    right: 0px;
+  }
+}
+
+@media(max-width: 950px){
+  .satellite {
+    right: -64px;
+  }
+}
+
+@media(max-width: 850px){
+  .satellite {
+    top: 64px;
+    right: -128px;
+  }
+}
+
+@media(max-width: 550px){
+  .satellite {
+    top: 0px;
+    z-index: -1;
+  }
+}
 
 .contact-form-container {
   padding: 32px;

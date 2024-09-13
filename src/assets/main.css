@@ -188,6 +188,7 @@ p {
     height: 128px;
 }
 
+
 @media (max-width: 1200px) {
     .hero-top-right {
         top: 32px;
@@ -279,6 +280,12 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.card-arrow {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
 }
 
 @media (max-width: 565px) {

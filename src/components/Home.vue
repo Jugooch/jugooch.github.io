@@ -19,7 +19,7 @@
   <div class="about-me d-flex flex-column align-items-center">
     <Spaceship />
     <h1 class="highlight">About Me</h1>
-    <div class="container col-8 mt-5">
+    <div class="container col-10 col-8-md mt-5">
       <div class="row flex-wrap">
         <div class="col-md-6 col-lg-6 col-sm-12 mb-4"><img src="../assets/images/me.png" class="img-fluid about-img"/></div>
         <div class="col-md-1 col-lg-1 d-none d-md-block"></div>
@@ -44,9 +44,9 @@
   <!--Projects Section-->
   <div class="projects-container">
     <BlackHole class="blackhole-svg" />
-    <div class="projects-content col-8 mx-auto">
+    <div class="projects-content col-10 col-8-md mx-auto d-flex flex-column gap-5 gap-md-0">
       <h1 class="highlight" style="margin-top: 520px;">Projects</h1>
-      <div class="row justify-content-between align-items-center mt-5 responsive-mg">
+      <div class="row justify-content-between align-items-center mt-5">
 
         <!-- Left Stack Column (or first row of images on small screens) -->
         <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2 mb-4 mb-md-0">
@@ -86,10 +86,10 @@
   </div>
   <!--Contact Section-->
   <div class="contact d-flex flex-column align-items-center">
-    <Satellite class="hero-top-right" />
+    <Satellite class="satellite" />
     <!--Vertical Spacing-->
     <h1 class="highlight" style="margin-top: 320px;">Contact</h1>
-    <div class="container col-8 mt-5">
+    <div class="container col-10 col-8-md mt-5">
       <div class="row flex-wrap">
         <div class="col-md-5 col-lg-5 col-12 d-flex flex-column gap-4">
           <div class="d-flex gap-4">
@@ -106,7 +106,7 @@
           <router-link :to="{ name: 'Contact' }" class="btn primary-btn">Contact Me</router-link>
         </div>
         <div class="col-md-1 col-lg-1 d-none d-md-block"></div>
-        <div class="col-md-6 col-lg-6 col-12 contact-form-container mt-4">
+        <div class="col-md-6 col-lg-6 col-12 contact-form-container mt-5">
           <form class="d-flex flex-column gap-4"
                 id="contact-form"
                 ref="form"
@@ -182,6 +182,38 @@ function sendEmail(formId) {
   border-radius: 10px;
   object-fit: cover;
 }
+.satellite {
+  position: absolute;
+  top: 80px;
+  right: 64px;
+}
+
+@media(max-width: 1100px){
+  .satellite {
+    right: 0px;
+  }
+}
+
+@media(max-width: 950px){
+  .satellite {
+    right: -64px;
+  }
+}
+
+@media(max-width: 850px){
+  .satellite {
+    right: -128px;
+    z-index: -1;
+  }
+}
+
+@media(max-width: 550px){
+  .satellite {
+    top: 40px;
+    right: -256px;
+    z-index: -1;
+  }
+}
 
 .projects-container {
   position: relative;
@@ -190,22 +222,6 @@ function sendEmail(formId) {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.responsive-mg{
-  margin-top: 0px;
-}
-
-@media(max-width: 1190px) {
-  .responsive-mg{
-    margin-top: 72px;
-  }
-}
-
-@media(max-width: 768px) {
-  .responsive-mg{
-    margin-top: 160px;
-  }
 }
 
 .blackhole-svg {

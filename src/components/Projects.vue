@@ -1,27 +1,43 @@
 <template>
-  <div class="hero-container d-flex flex-column justify-content-between">
+  <div class="hero-container projects">
     <navbar />
+    <h1 class="highlight mt-5">Projects</h1>
     <div class="blackhole-container">
       <BlackHole class="blackhole" />
     </div>
     <!--Projects Section-->
-    <div class="projects-container">
-      <div class="projects-content col-8">
-        <h1 class="highlight">My Projects</h1>
-        <div class="d-flex justify-content-between align-items-center mt-5">
-          <div class="col-3 d-flex flex-column gap-4">
-            <img src="../assets/images/Summit.png" alt="Project 1" class="project-img" />
-            <img src="../assets/images/Kue.png" alt="Project 2" class="project-img" />
+    <div class="projects-container mt-5 mt-md-0">
+      <div class="projects-content col-10 col-md-8 mx-auto d-flex flex-column gap-5 gap-md-0">
+        <div class="row justify-content-between align-items-center">
+
+          <!-- Left Stack Column (or first row of images on small screens) -->
+          <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2 mb-4 mb-md-0">
+            <div class="col-5 col-md-12">
+              <img src="../assets/images/Summit.png" alt="Project 1" class="project-img img-fluid" />
+            </div>
+            <div class="col-1"></div>
+            <div class="col-5 col-md-12">
+              <img src="../assets/images/Kue.png" alt="Project 2" class="project-img img-fluid" />
+            </div>
           </div>
-          <div class="col-lg-2 col-md-3 d-flex flex-column gap-2">
+
+          <!-- Center Content Column -->
+          <div class="col-12 col-md-3 d-flex flex-column gap-2 text-center text-md-left mb-4 mb-md-0">
             <h4>My skills displayed</h4>
             <p class="projects-description">
               Explore my portfolio showcasing all my major work done in both Software Development and UI Design!
             </p>
           </div>
-          <div class="col-3 d-flex flex-column gap-4">
-            <img src="../assets/images/OfficerPrivacy.png" alt="Project 3" class="project-img" />
-            <img src="../assets/images/GCUApp.png" alt="Project 4" class="project-img" />
+
+          <!-- Right Stack Column (or second row of images on small screens) -->
+          <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2">
+            <div class="col-5 col-md-12">
+              <img src="../assets/images/OfficerPrivacy.png" alt="Project 1" class="project-img img-fluid" />
+            </div>
+            <div class="col-1"></div>
+            <div class="col-5 col-md-12">
+              <img src="../assets/images/GCUApp.png" alt="Project 2" class="project-img img-fluid" />
+            </div>
           </div>
         </div>
       </div>
@@ -29,8 +45,9 @@
     </div>
     <div></div>
   </div>
+  <div class="vertical-spacing"></div>
   <div class="container d-flex flex-column gap-5 align-items-center col-10">
-    <div class="d-flex gap-4 flex-wrap justify-content-center">
+    <div class="d-flex gap-4 gap-lg-5 flex-wrap justify-content-center">
       <div v-for="item in projects">
         <ProjectCard :project="item" />
       </div>
@@ -97,6 +114,12 @@ var projects = [
 </script>
 
 <style scoped>
+
+.projects {
+  text-align: center;
+  height: 100%;
+}
+
 .blackhole-container {
   position: absolute;
   top: 16px;
@@ -110,6 +133,32 @@ var projects = [
   object-fit: contain;
 }
 
+@media(max-width: 1100px){
+  .blackhole-container {
+    width: 60%;
+    right: 0px;
+  }
+}
+
+@media(max-width: 950px){
+  .blackhole-container {
+    right: -64px;
+  }
+}
+
+@media(max-width: 850px){
+  .blackhole-container {
+    z-index: -1;
+  }
+}
+
+@media(max-width: 550px){
+  .blackhole-container {
+    right: -120px;
+    z-index: -1;
+  }
+}
+
 .projects-container {
   position: relative;
   width: 100%;
@@ -121,15 +170,7 @@ var projects = [
 
 .projects-content {
   position: relative;
-  /* Place content on top of the black hole SVG */
   z-index: 2;
-  text-align: center;
-}
-
-.projects-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
 }
 
 .project-img {

@@ -1,15 +1,15 @@
 <template>
-  <div class="hero-container about-container d-flex flex-column justify-content-between">
+  <div class="hero-container about-container">
     <navbar />
+    <h1 class="highlight mt-5">About Me</h1>
     <Spaceship2 class="hero-top-right spaceship" />
     <!--About me Section-->
-    <div class="about-me d-flex flex-column align-items-center">
-      <h1 class="highlight">About Me</h1>
-      <div class="container col-8 mt-5">
+    <div class="about-me d-flex flex-column">
+      <div class="container col-10 col-md-8 mt-5">
         <div class="row flex-wrap">
-          <div class="col-md-6 col-lg-6 col-sm-12 mb-4"><img src="../assets/images/me.png" class="img-fluid about-img"/></div>
+          <div class="col-md-5 col-lg-6 col-12 mb-4"><img src="../assets/images/me.png" class="img-fluid about-img"/></div>
           <div class="col-md-1 col-lg-1 d-none d-md-block"></div>
-          <div class="d-flex flex-column col-md-5 col-lg-5 col-sm-12 gap-4 align-items-center align-items-md-start">
+          <div class="d-flex flex-column col-md-6 col-lg-5 col-sm-12 gap-4 align-items-center align-items-md-start">
             <div class="d-flex gap-4">
               <LinkedIn />
               <Github />
@@ -189,21 +189,37 @@ var education = [
 </script>
 
 <style scoped>
+.about-container {
+  text-align: center;
+  height: 100%;
+}
+
 .spaceship {
   width: 40%;
 }
-@media(max-width: 770px){
-  .about-container {
-    text-align: center;
-    height: auto;
-  }
-}
 
+.about-me {
+  text-align: start;
+}
 
 .about-img {
   width: 100%;
   height: 400px;
   border-radius: 10px;
   object-fit: cover;
+}
+
+@media(max-width: 668px){
+  .about-container {
+    height: auto;
+  }
+
+  .about-me {
+    text-align: center;
+  }
+
+  .about-img {
+    height: 200px;
+  }
 }
 </style>

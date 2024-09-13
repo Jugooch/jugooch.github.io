@@ -1,10 +1,6 @@
 <template>
   <nav class="navbar">
-    <Hamburger class="hamburger-icon" @click="toggleMenu" :isActive="isMenuActive" @toggle="toggleMenu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </Hamburger>
+    <Hamburger class="hamburger-icon" @click="toggleMenu" :isActive="isMenuActive" @toggle="toggleMenu"></Hamburger>
     <div :class="{ 'nav-links': true, 'is-active': isMenuActive }">
       <router-link :to="{ name: 'Home' }" class="nav-item" active-class="active">
         <div class="nav-content">
@@ -111,20 +107,17 @@ export default {
 .nav-item {
   position: relative;
   cursor: pointer;
-  padding: 10px;
+  padding: 16px;
   text-decoration: none;
-  width: 100%;
-}
-
-.nav-item h5 {
-  margin-left: 16px;
 }
 
 .nav-item.active h5 {
   color: #9747FF;
 }
 
-
+.nav-item h5 {
+  margin-bottom: 0px;
+}
 
 /* Style for the helmet icon */
 .helmet {
@@ -157,7 +150,6 @@ export default {
   .nav-links {
     display: none;
     flex-direction: column;
-    align-items: flex-start;
     width: 100%;
   }
 
@@ -166,8 +158,17 @@ export default {
     align-items: flex-start;
   }
 
+  .nav-item {
+    width: 100%;
+  }
+
   .nav-item.active {
     background-color: #141414;
+    width: 100%;
+  }
+
+  .nav-item h5 {
+    margin-left: 16px;
   }
 
   .nav-item.active h5 {

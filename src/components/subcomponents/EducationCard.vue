@@ -25,7 +25,7 @@
           <p>Bachelor of Science in <b>{{props.degrees[0]}}</b></p>
           <p>Minor in <b>{{props.degrees[1]}}</b></p>
         </div>
-        <FlipArrow class="card-arrow" />
+        <FlipArrow class="card-arrow flipped" />
       </div>
     </div>
   </div>

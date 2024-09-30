@@ -1,7 +1,8 @@
 <template>
   <div class="hero-container d-flex flex-column justify-content-between">
     <navbar />
-    <Planet class="hero-top-right" />
+    <!-- Rive Animation Planet with Moon Orbit -->
+    <MoonOrbit class="hero-top-right" />
     <div class="d-flex flex-column gap-2 align-self-center" style="text-align: center">
       <h2>Hi, I'm <span class="highlight">Justice Gooch</span></h2>
       <p>Software Developer | UI Designer</p>
@@ -11,7 +12,7 @@
       </div>
     </div>
     <div class="align-self-center">
-      <!-- TODO: Replace with Rive animation Alien-->
+      <!-- Rive Animation Alien -->
       <Alien />
     </div>
   </div>
@@ -51,7 +52,7 @@
         <!-- Left Stack Column (or first row of images on small screens) -->
         <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2 mb-4 mb-md-0">
           <div class="col-5 col-md-12">
-            <img src="../assets/images/Summit.png" alt="Project 1" class="project-img img-fluid" />
+            <img src="../assets/images/ClubAutomation.png" alt="Project 1" class="project-img img-fluid" />
           </div>
           <div class="col-1"></div>
           <div class="col-5 col-md-12">
@@ -71,7 +72,7 @@
         <!-- Right Stack Column (or second row of images on small screens) -->
         <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2">
           <div class="col-5 col-md-12">
-            <img src="../assets/images/OfficerPrivacy.png" alt="Project 1" class="project-img img-fluid" />
+            <img src="../assets/images/Clearstack.png" alt="Project 1" class="project-img img-fluid" />
           </div>
           <div class="col-1"></div>
           <div class="col-5 col-md-12">
@@ -106,7 +107,7 @@
           <router-link :to="{ name: 'Contact' }" class="btn primary-btn">Contact Me</router-link>
         </div>
         <div class="col-md-1 col-lg-1 d-none d-md-block"></div>
-        <div class="col-md-6 col-lg-6 col-12 contact-form-container mt-5">
+        <div class="col-md-6 col-lg-6 col-12 contact-form-container mt-5 mt-md-0">
           <form class="d-flex flex-column gap-4"
                 id="contact-form"
                 ref="form"
@@ -133,15 +134,18 @@ import Indeed from "./icons/indeed.vue";
 import Instagram from "./icons/instagram.vue";
 
 // Illustrations
-import Alien from "./static-illustrations/Alien.vue";
 import Spaceship from "./static-illustrations/Spaceship.vue";
 import Satellite from "./static-illustrations/Satellite.vue";
 import Planet from "./static-illustrations/Planet.vue";
 import BlackHole from "./static-illustrations/BlackHole.vue";
 
+// Rive
+import Alien from "./rive-illustrations/Alien.vue"
+
 // Files
 import Resume from "../assets/Justice_Gooch_Resume.pdf";
 import emailjs from "@emailjs/browser";
+import MoonOrbit from "./rive-illustrations/MoonOrbit.vue";
 
 function downloadPDF() {
   // Use the imported PDF path
@@ -181,6 +185,7 @@ function sendEmail(formId) {
   height: 400px;
   border-radius: 10px;
   object-fit: cover;
+  object-position: center;
 }
 .satellite {
   position: absolute;
@@ -242,9 +247,9 @@ function sendEmail(formId) {
 .project-img {
   width: 100%;
   height: 180px;
+  max-width: 320px;
   border-radius: 10px;
   border: 1px solid white;
-  object-fit: cover;
 }
 
 .contact {

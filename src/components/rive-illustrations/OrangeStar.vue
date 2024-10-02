@@ -1,15 +1,22 @@
 <template>
-  <canvas id="riveOrangeStar" class="star-canvas" width="18" height="18"></canvas>
+  <canvas :id="starId" class="star-canvas" width="18" height="18"></canvas>
 </template>
 
 <script setup>
 import * as rive from "@rive-app/canvas";
 import { onMounted } from "vue";
 
+const props = defineProps({
+  starId: {
+    type: String,
+    required: true,
+  }
+});
+
 onMounted(() => {
   const r = new rive.Rive({
     src: 'src/assets/rive/portfolio.riv',
-    canvas: document.getElementById("riveOrangeStar"),
+    canvas: document.getElementById(props.starId),
     autoplay: true,
     artboard: "Orange Star",
     animations: ["Timeline 1"],
@@ -21,8 +28,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.star-canvas {
-  width: 18px;
-  height: 18px;
-}
+  .star-canvas {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+  }
 </style>

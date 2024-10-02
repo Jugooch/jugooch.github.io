@@ -17,7 +17,7 @@ const props = defineProps({
 onMounted(() => {
   const r = new rive.Rive({
     src: 'src/assets/rive/portfolio.riv',
-    canvas: document.getElementById(this.props.starId),
+    canvas: document.getElementById(props.starId),
     autoplay: true,
     artboard: "Normal Star",
     animations: ["Timeline 1"],
@@ -33,5 +33,6 @@ onMounted(() => {
   .star-canvas {
     width: 18px;
     height: 18px;
+    position: absolute;
   }
 </style>

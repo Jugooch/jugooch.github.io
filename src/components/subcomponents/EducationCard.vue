@@ -14,7 +14,7 @@
             <li v-for="item in props.achievements" class="small" style="margin-bottom: 4px;">{{item}}</li>
           </ul>
         </div>
-        <FlipArrow class="card-arrow flipped" />
+        <FlipArrow class="card-arrow" :class="{ 'flipped': flipped }"  />
       </div>
       <div class="card-face card-large card-front d-flex flex-column gap-4 align-items-center justify-content-center">
         <img width="80" :src="props.image"/>
@@ -25,7 +25,7 @@
           <p>Bachelor of Science in <b>{{props.degrees[0]}}</b></p>
           <p>Minor in <b>{{props.degrees[1]}}</b></p>
         </div>
-        <FlipArrow class="card-arrow flipped" />
+        <FlipArrow class="card-arrow" :class="{ 'flipped': flipped }"  />
       </div>
     </div>
   </div>
@@ -46,8 +46,9 @@ function toggleFlip() {
 </script>
 
 <style scoped>
-  .flipped {
-    transform: scaleX(-1);
-    left: 16px;
-  }
+.flipped {
+  right: unset;
+  transform: scaleX(-1);
+  left: 16px;
+}
 </style>

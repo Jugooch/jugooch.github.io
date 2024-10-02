@@ -45,41 +45,16 @@
   <!--Projects Section-->
   <div class="projects-container">
     <BlackHole class="blackhole-svg" />
-    <div class="projects-content col-10 col-8-md mx-auto d-flex flex-column gap-5 gap-md-0">
+    <div class="projects-content col-10 col-8-md d-flex flex-column align-items-center gap-5 gap-md-0">
       <h1 class="highlight" style="margin-top: 520px;">Projects</h1>
-      <div class="row justify-content-between align-items-center mt-5">
-
-        <!-- Left Stack Column (or first row of images on small screens) -->
-        <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2 mb-4 mb-md-0">
-          <div class="col-5 col-md-12">
-            <img src="../assets/images/ClubAutomation.png" alt="Project 1" class="project-img img-fluid" />
-          </div>
-          <div class="col-1"></div>
-          <div class="col-5 col-md-12">
-            <img src="../assets/images/Kue.png" alt="Project 2" class="project-img img-fluid" />
-          </div>
-        </div>
-
         <!-- Center Content Column -->
-        <div class="col-12 col-md-3 d-flex flex-column gap-2 text-center text-md-left mb-4 mb-md-0">
+        <div style="margin-top: 120px;" class="col-12 col-md-3 d-flex flex-column gap-2 text-center text-md-left mb-4 mb-md-0">
           <h4>My skills displayed</h4>
           <p class="projects-description">
             Explore my portfolio showcasing all my major work done in both Software Development and UI Design!
           </p>
           <router-link :to="{ name: 'Projects' }" class="btn primary-btn">See My Projects</router-link>
         </div>
-
-        <!-- Right Stack Column (or second row of images on small screens) -->
-        <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2">
-          <div class="col-5 col-md-12">
-            <img src="../assets/images/Clearstack.png" alt="Project 1" class="project-img img-fluid" />
-          </div>
-          <div class="col-1"></div>
-          <div class="col-5 col-md-12">
-            <img src="../assets/images/GCUApp.png" alt="Project 2" class="project-img img-fluid" />
-          </div>
-        </div>
-      </div>
 
       <!-- Vertical Spacing -->
       <div class="vertical-spacing mb-5"></div>

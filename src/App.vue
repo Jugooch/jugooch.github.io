@@ -68,9 +68,18 @@ onMounted(() => {
   const canvas = spaceCanvas.value;
   const ctx = canvas.getContext('2d');
 
-  // Set canvas width and height to match the content height
-  canvas.width = document.body.scrollWidth;
-  canvas.height = document.body.scrollHeight;
+  // Function to adjust canvas size and stars-container dynamically
+  function adjustSizes() {
+    // Set canvas width and height to match the full page, including any scrollable content
+    canvas.width = document.body.scrollWidth;
+    canvas.height = document.body.scrollHeight;
+
+    // Adjust the stars-container height to match the body height as well
+    const starsContainer = document.querySelector('.stars-container');
+    if (starsContainer) {
+      starsContainer.style.height = `${document.body.scrollHeight}px`;
+    }
+  }
 
   // Handle window resize
   window.addEventListener("resize", () => {
@@ -88,7 +97,8 @@ onMounted(() => {
 
   // Function to draw background stars
   function drawStars() {
-    const numberOfStars = 100;
+    const numberOfStars = 150;
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before drawing
     for (let i = 0; i < numberOfStars; i++) {
       const x = Math.random() * canvas.width;
       const y = Math.random() * canvas.height;
@@ -118,14 +128,33 @@ onMounted(() => {
 
     debugger;
     // Populate the stars arrays
-    normalStars.value = generateStarCoordinates(150);
+    normalStars.value = generateStarCoordinates(75);
     purpleStars.value = generateStarCoordinates(10);
     orangeStars.value = generateStarCoordinates(10);
   }
 
   // Initial drawing of stars and generation of Rive stars
+  adjustSizes();
   drawStars();
   generateStars();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+    adjustSizes();
+    drawStars();
+    generateStars();
+  });
+
+  // Listen for content changes dynamically with ResizeObserver
+  const resizeObserver = new ResizeObserver(() => {
+    adjustSizes();
+    drawStars();
+    generateStars();
+  });
+  
+  // Watch for changes in the body content size
+  resizeObserver.observe(document.body); 
+
 });
 </script>
 
@@ -147,7 +176,7 @@ onMounted(() => {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 
   pointer-events: none;
 }

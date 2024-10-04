@@ -5,43 +5,29 @@
     <div class="blackhole-container">
       <BlackHole class="blackhole" />
     </div>
-    <!--Projects Section-->
-    <div class="projects-container mt-5 mt-md-0">
-      <div class="projects-content col-10 col-md-8 mx-auto d-flex flex-column gap-5 gap-md-0">
-        <div class="row justify-content-between align-items-center">
 
-          <!-- Left Stack Column (or first row of images on small screens) -->
-          <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2 mb-4 mb-md-0">
-            <div class="col-5 col-md-12">
-              <img src="../assets/images/Summit.png" alt="Project 1" class="project-img img-fluid" />
+    <div class="projects-container d-flex flex-column">
+      <div class="container col-10 col-md-8 mt-5">
+        <div class="row flex-wrap">
+          <div class="col-md-5 col-lg-6 col-12 mb-4"><img src="../assets/images/me.png" class="img-fluid hero-img"/></div>
+          <div class="col-md-1 col-lg-1 d-none d-md-block"></div>
+          <div class="d-flex flex-column col-md-6 col-lg-5 col-sm-12 gap-4 justify-content-md-center align-items-center align-items-md-start">
+            <div class="d-flex gap-4">
+              <LinkedIn />
+              <Github />
+              <Indeed />
+              <Instagram />
             </div>
-            <div class="col-1"></div>
-            <div class="col-5 col-md-12">
-              <img src="../assets/images/Kue.png" alt="Project 2" class="project-img img-fluid" />
-            </div>
-          </div>
-
-          <!-- Center Content Column -->
-          <div class="col-12 col-md-3 d-flex flex-column gap-2 text-center text-md-left mb-4 mb-md-0">
-            <h4>My skills displayed</h4>
-            <p class="projects-description">
-              Explore my portfolio showcasing all my major work done in both Software Development and UI Design!
+            <h4>My Skills Displayed</h4>
+            <p>Explore my portfolio showcasing all my major work done in both Software Development and UI Design!
+              <br />
+              <br />
+              Each of my projects below has its own separate page with more information if you would like to learn
+              more about the processes I used to create them
             </p>
-          </div>
-
-          <!-- Right Stack Column (or second row of images on small screens) -->
-          <div class="col-12 col-md-3 d-flex flex-wrap flex-md-column gap-2">
-            <div class="col-5 col-md-12">
-              <img src="../assets/images/OfficerPrivacy.png" alt="Project 1" class="project-img img-fluid" />
-            </div>
-            <div class="col-1"></div>
-            <div class="col-5 col-md-12">
-              <img src="../assets/images/GCUApp.png" alt="Project 2" class="project-img img-fluid" />
-            </div>
           </div>
         </div>
       </div>
-
     </div>
     <div></div>
   </div>
@@ -61,56 +47,31 @@ import Navbar from "./navbar.vue";
 import BlackHole from "./static-illustrations/BlackHole.vue";
 import ProjectCard from "./subcomponents/ProjectCard.vue";
 
-var projects = [
-  {
-    'title': "University Student App",
-    'image': "src/assets/images/GCUApp.png",
-    'url': "",
-    'github': "https://github.com/Jugooch/gcu_student_app",
-    'header': "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
-    'description': "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
-  },
-  {
-    'title': "National Geographic Redesign",
-    'image': "src/assets/images/GCUApp.png",
-    'url': "",
-    'github': "",
-    'header': "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
-    'description': "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
-  },
-  {
-    'title': "National Geographic Redesign",
-    'image': "src/assets/images/GCUApp.png",
-    'url': "",
-    'github': "",
-    'header': "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
-    'description': "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
-  },
-  {
-    'title': "National Geographic Redesign",
-    'image': "src/assets/images/GCUApp.png",
-    'url': "",
-    'github': "",
-    'header': "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
-    'description': "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
-  },
-  {
-    'title': "National Geographic Redesign",
-    'image': "src/assets/images/GCUApp.png",
-    'url': "",
-    'github': "",
-    'header': "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
-    'description': "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
-  },
-  {
-    'title': "National Geographic Redesign",
-    'image': "src/assets/images/GCUApp.png",
-    'url': "",
-    'github': "",
-    'header': "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
-    'description': "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
-  },
-]
+import { ref, onMounted } from 'vue';
+import Indeed from "./icons/indeed.vue";
+import Instagram from "./icons/instagram.vue";
+import Github from "./icons/github.vue";
+import LinkedIn from "./icons/linkedin.vue";
+
+const projects = ref([]);
+
+onMounted(async () => {
+  projects.value = await fetchJSON('src/assets/data/projects.json');
+});
+
+// Function to fetch data from JSON files
+async function fetchJSON(path) {
+  try {
+    const response = await fetch(path);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const ret = await response.json();
+    return ret;
+  } catch (error) {
+    console.error('There has been a problem with your fetch operation:', error);
+  }
+}
 </script>
 
 <style scoped>
@@ -160,23 +121,18 @@ var projects = [
 }
 
 .projects-container {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: start;
+  height: 100%;
 }
 
-.projects-content {
-  position: relative;
-  z-index: 2;
-}
 
-.project-img {
-  width: 100%;
-  height: 180px;
-  border-radius: 10px;
-  border: 1px solid white;
+@media(max-width: 668px){
+  .projects {
+    height: 100vh;
+  }
+
+  .projects-container {
+    text-align: center;
+  }
 }
 </style>

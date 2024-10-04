@@ -7,9 +7,9 @@
     <div class="about-me d-flex flex-column">
       <div class="container col-10 col-md-8 mt-5">
         <div class="row flex-wrap">
-          <div class="col-md-5 col-lg-6 col-12 mb-4"><img src="../assets/images/me.png" class="img-fluid about-img"/></div>
+          <div class="col-md-5 col-lg-6 col-12 mb-4"><img src="../assets/images/me.png" class="img-fluid hero-img"/></div>
           <div class="col-md-1 col-lg-1 d-none d-md-block"></div>
-          <div class="d-flex flex-column col-md-6 col-lg-5 col-sm-12 gap-4 align-items-center align-items-md-start">
+          <div class="d-flex flex-column col-md-6 col-lg-5 col-sm-12 gap-4 align-items-center justify-content-md-center align-items-md-start">
             <div class="d-flex gap-4">
               <LinkedIn />
               <Github />
@@ -18,7 +18,7 @@
             </div>
             <h4>My name is Justice Gooch</h4>
             <p>I am a Software developer and UI designer who graduated from Grand Canyon University in 2024. Since then, I
-              have held full-time and contract positions for multiple companies outlined in the experience section below.
+              have held full-time and contract positions outlined in the experience section below.
               <br />
               <br />
               My focus when creating applications has been on retaining users. I want users to look at the product I have
@@ -86,106 +86,42 @@ import LinkedIn from "./icons/linkedin.vue";
 import Indeed from "./icons/indeed.vue";
 import Github from "./icons/github.vue";
 
-// Skills Data
-var skills = [
-  {
-    'title': "HTML",
-    'image': "src/assets/images/skills-logos/html.png"
-  },
-  {
-    'title': "CSS",
-    'image': "src/assets/images/skills-logos/css.png"
-  },
-  {
-    'title': "JavaScript",
-    'image': "src/assets/images/skills-logos/js.png"
-  },
-  {
-    'title': "Vue.js",
-    'image': "src/assets/images/skills-logos/vue.png"
-  },
-  {
-    'title': "Figma",
-    'image': "src/assets/images/skills-logos/figma.png"
-  },
-  {
-    'title': "C#",
-    'image': "src/assets/images/skills-logos/csharp.png"
-  },
-  {
-    'title': "Java",
-    'image': "src/assets/images/skills-logos/java.png"
-  },
-  {
-    'title': "Azure",
-    'image': "src/assets/images/skills-logos/azure.png"
-  },
-  {
-    'title': "Jira",
-    'image': "src/assets/images/skills-logos/jira.png"
-  },
-  {
-    'title': "Git",
-    'image': "src/assets/images/skills-logos/git.png"
-  },
-  {
-    'title': "Rive",
-    'image': "src/assets/images/skills-logos/rive.png"
-  },
-  {
-    'title': "Adobe",
-    'image': "src/assets/images/skills-logos/adobe.png"
-  },
-  {
-    'title': "Flutter",
-    'image': "src/assets/images/skills-logos/Flutter.png"
-  },
-]
+import {ref, onMounted, computed} from 'vue';
 
-// Experience Data
-var experience = [
-  {
-    'title': "Reynolds and Reynolds",
-    'image': "src/assets/images/experience-logos/reynolds.png",
-    'dateRange': "August 2024 to Current",
-    'position': "Full-stack Software Developer",
-    'content': ["Contributed to the development of Auto Vision, a web application designed for car dealerships to view, track, and sell cars.", "Utilized C# for backend development and Vue.js for frontend development to build APIs and Web Applications.", "Collaborated with the team through code reviews and standups to debug and continuously improve the application."]
-  },
-  {
-    'title': "ClearStack AI",
-    'image': "src/assets/images/experience-logos/clearstack.png",
-    'dateRange': "May 2024 to Current",
-    'position': "UI Designer and Developer",
-    'content': ["Interfaced directly with clients to gather requirements and understand their design needs.", "Utilized Figma to create, iterate and refine user interfaces as guidelines for the front end developers.", "Developed front-end code for full-stack applications using Vue.JS and Flutter while contributing to organizations CI/CD pipeline."]
-  },
-  {
-    'title': "Kinective",
-    'image': "src/assets/images/experience-logos/kinective.png",
-    'dateRange': "October 2022 to August 2023",
-    'position': "Software Development Intern",
-    'content': ["Used Vue and Wicket to build internal tools that increased productivity within the company by over 20%.", "Followed the Agile Methodology using tools like Jira and Confluence to organize and achieve deadlines efficiently.", "Worked alongside the front-end and UI/UX team to help create a design system for the company."]
-  },
-];
+// Create a ref to hold the skills data
+const skills = ref([]);
+const experience = ref([]);
+const education = ref([]);
+const isLoading = ref(true);
 
-// Education Data
-var education = [
-  {
-    'title': "Grand Canyon University",
-    'image': "src/assets/images/education-logos/gcu.png",
-    'dateRange': "August 2021 to April 2024",
-    'degrees': ["Software Development", "Web Design"],
-    'courses': ["Front-End Web Development", "C# I, II, & III", "Java I, II, & III", "Databases", "Web Design I & II", "UI/UX Design"],
-    'achievements': ["Graduated Summa Cum Laude with 4.0"],
-  },
-  {
-    'title': "Hill College",
-    'image': "src/assets/images/education-logos/hill.png",
-    'dateRange': "August 2020 to May 2021",
-    'degrees': ["Computer Science"],
-    'courses': ["C++ I & II", "Algorithms and Data Structures", "Assembly"],
-    'achievements': ["Graduated Honors with a 3.8", "Received academic scholarships and a baseball scholarship"],
-  },
-];
+// Fetch the JSON data and stop loading once we get it
+onMounted(async () => {
+  try {
+    skills.value = await fetchJSON('src/assets/data/skills.json');
+    experience.value = await fetchJSON('src/assets/data/experience.json');
+    education.value = await fetchJSON('src/assets/data/education.json');
+  } finally {
+    isLoading.value = false;
+  }
+});
+
+const loading = computed(() => {
+  return this.isLoading.value;
+})
+
+// Function to fetch data from JSON files
+async function fetchJSON(path) {
+  try {
+    const response = await fetch(path);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const ret = await response.json();
+    return ret;
+  } catch (error) {
+    console.error('There has been a problem with your fetch operation:', error);
+  }
+}
 </script>
 
 <style scoped>
@@ -202,24 +138,13 @@ var education = [
   text-align: start;
 }
 
-.about-img {
-  width: 100%;
-  height: 400px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
 @media(max-width: 668px){
   .about-container {
-    height: auto;
+    height: 100vh;
   }
 
   .about-me {
     text-align: center;
-  }
-
-  .about-img {
-    height: 200px;
   }
 }
 </style>

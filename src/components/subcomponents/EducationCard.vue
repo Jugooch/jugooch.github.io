@@ -20,7 +20,7 @@
         <img width="80" :src="props.image"/>
         <h4>{{props.title}}</h4>
         <p>{{props.dateRange}}</p>
-        <p v-if="props.title.includes('Hill')">Associate of the Arts in <b>{{props.degree}}</b></p>
+        <p v-if="props.title.includes('Hill')" style="text-align: center;">Associate of the Arts in <b>{{props.degrees[0]}}</b></p>
         <div v-else style="text-align: center;">
           <p>Bachelor of Science in <b>{{props.degrees[0]}}</b></p>
           <p>Minor in <b>{{props.degrees[1]}}</b></p>

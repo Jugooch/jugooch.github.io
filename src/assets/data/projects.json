@@ -1,0 +1,50 @@
+[
+  {
+    "title": "University Student App",
+    "image": "src/assets/images/GCUApp.png",
+    "url": "",
+    "github": "https://github.com/Jugooch/gcu_student_app",
+    "header": "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
+    "description": "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
+  },
+  {
+    "title": "National Geographic Redesign",
+    "image": "src/assets/images/GCUApp.png",
+    "url": "",
+    "github": "",
+    "header": "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
+    "description": "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
+  },
+  {
+    "title": "National Geographic Redesign",
+    "image": "src/assets/images/GCUApp.png",
+    "url": "",
+    "github": "",
+    "header": "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
+    "description": "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
+  },
+  {
+    "title": "National Geographic Redesign",
+    "image": "src/assets/images/GCUApp.png",
+    "url": "",
+    "github": "",
+    "header": "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
+    "description": "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
+  },
+  {
+    "title": "National Geographic Redesign",
+    "image": "src/assets/images/GCUApp.png",
+    "url": "",
+    "github": "",
+    "header": "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
+    "description": "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
+  },
+  {
+    "title": "National Geographic Redesign",
+    "image": "src/assets/images/GCUApp.png",
+    "url": "",
+    "github": "",
+    "header": "This project is a mobile application created for my University’s Capstone Showcase. It was a re-envisioned version of the student application that user’s used on the daily",
+    "description": "This Application is a redesign of Grand Canyon University's (GCU's) mobile student application. The point of this redesign was to condense the amount of applications that GCU students have to download. As of right now, students download upwards of 8 to 9 applications to do various GCU-related tasks; this app shrinks that down to 1. The problem's students had with downloading so many apps is the amount of space it took up on their device, and the poor user experience that was related to moving between multiple applications just to do small everyday tasks. This app reduces the amount of space taken up, and also improves that user experience by keeping everything important for every-day life in one location. It utilizes Flutter as a frontend framework to support use across different platforms and is designed based on an entire UI/UX case study done on current GCU students."
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Reynolds and Reynolds",
+    "image": "src/assets/images/experience-logos/reynolds.png",
+    "dateRange": "August 2024 to Current",
+    "position": "Full-stack Software Developer",
+    "content": ["Contributed to the development of Auto Vision, a web application designed for car dealerships to view, track, and sell cars.", "Utilized C# for backend development and Vue.js for frontend development to build APIs and Web Applications.", "Collaborated with the team through code reviews and standups to debug and continuously improve the application."]
+  },
+  {
+    "title": "ClearStack AI",
+    "image": "src/assets/images/experience-logos/clearstack.png",
+    "dateRange": "May 2024 to Current",
+    "position": "UI Designer and Developer",
+    "content": ["Interfaced directly with clients to gather requirements and understand their design needs.", "Utilized Figma to create, iterate and refine user interfaces as guidelines for the front end developers.", "Developed front-end code for full-stack applications using Vue.JS and Flutter while contributing to organizations CI/CD pipeline."]
+  },
+  {
+    "title": "Kinective",
+    "image": "src/assets/images/experience-logos/kinective.png",
+    "dateRange": "October 2022 to August 2023",
+    "position": "Software Development Intern",
+    "content": ["Used Vue and Wicket to build internal tools that increased productivity within the company by over 20%.", "Followed the Agile Methodology using tools like Jira and Confluence to organize and achieve deadlines efficiently.", "Worked alongside the front-end and UI/UX team to help create a design system for the company."]
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Grand Canyon University",
+    "image": "src/assets/images/education-logos/gcu.png",
+    "dateRange": "August 2021 to April 2024",
+    "degrees": ["Software Development", "Web Design"],
+    "courses": ["Front-End Web Development", "C# I, II, & III", "Java I, II, & III", "Databases", "Web Design I & II", "UI/UX Design"],
+    "achievements": ["Graduated Summa Cum Laude with 4.0"]
+  },
+  {
+    "title": "Hill College",
+    "image": "src/assets/images/education-logos/hill.png",
+    "dateRange": "August 2020 to May 2021",
+    "degrees": ["Computer Science"],
+    "courses": ["C++ I & II", "Algorithms and Data Structures", "Assembly"],
+    "achievements": ["Graduated Honors with a 3.8", "Received academic scholarships and a baseball scholarship"]
+  }
+]

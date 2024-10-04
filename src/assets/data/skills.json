@@ -1,0 +1,54 @@
+[
+  {
+    "title": "HTML",
+    "image": "src/assets/images/skills-logos/html.png"
+  },
+  {
+    "title": "CSS",
+    "image": "src/assets/images/skills-logos/css.png"
+  },
+  {
+    "title": "JavaScript",
+    "image": "src/assets/images/skills-logos/js.png"
+  },
+  {
+    "title": "Vue.js",
+    "image": "src/assets/images/skills-logos/vue.png"
+  },
+  {
+    "title": "Figma",
+    "image": "src/assets/images/skills-logos/figma.png"
+  },
+  {
+    "title": "C#",
+    "image": "src/assets/images/skills-logos/csharp.png"
+  },
+  {
+    "title": "Java",
+    "image": "src/assets/images/skills-logos/java.png"
+  },
+  {
+    "title": "Azure",
+    "image": "src/assets/images/skills-logos/azure.png"
+  },
+  {
+    "title": "Jira",
+    "image": "src/assets/images/skills-logos/jira.png"
+  },
+  {
+    "title": "Git",
+    "image": "src/assets/images/skills-logos/git.png"
+  },
+  {
+    "title": "Rive",
+    "image": "src/assets/images/skills-logos/rive.png"
+  },
+  {
+    "title": "Adobe",
+    "image": "src/assets/images/skills-logos/adobe.png"
+  },
+  {
+    "title": "Flutter",
+    "image": "src/assets/images/skills-logos/Flutter.png"
+  }
+]

@@ -150,7 +150,7 @@ function sendEmail(formId) {
 
 <style scoped>
 .about-me {
-  margin-top: -16px;
+  margin-top: -32px;
   position: relative;
   z-index: 1;
 }

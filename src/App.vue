@@ -58,6 +58,7 @@ import NormalStar from "./components/rive-illustrations/NormalStar.vue";
 import OrangeStar from "./components/rive-illustrations/OrangeStar.vue";
 
 // Refs for normal, purple, and orange stars
+let starIds = [];
 const normalStars = ref([]);
 const purpleStars = ref([]);
 const orangeStars = ref([]);
@@ -92,13 +93,21 @@ onMounted(() => {
   });
 
   function generateUniqueId() {
-    return 'star-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+    let id = 'star-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+    if(starIds.includes(id)){
+      return generateUniqueId();
+    }
+    else{
+      starIds.push(id);
+      return id;
+    }
   }
 
   // Function to draw background stars
   function drawStars() {
-    const numberOfStars = 150;
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before drawing
+    const numberOfStars = 200;
+    // Clear the canvas before drawing again
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < numberOfStars; i++) {
       const x = Math.random() * canvas.width;
       const y = Math.random() * canvas.height;
@@ -126,11 +135,10 @@ onMounted(() => {
       return starsArray;
     }
 
-    debugger;
     // Populate the stars arrays
-    normalStars.value = generateStarCoordinates(75);
-    purpleStars.value = generateStarCoordinates(10);
-    orangeStars.value = generateStarCoordinates(10);
+    normalStars.value = generateStarCoordinates(90);
+    purpleStars.value = generateStarCoordinates(15);
+    orangeStars.value = generateStarCoordinates(15);
   }
 
   // Initial drawing of stars and generation of Rive stars

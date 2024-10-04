@@ -6,22 +6,10 @@ const uiProjects = ref([
     url: "https://www.behance.net/gallery/183185371/National-Geographic-Redesign",
   },
   {
-    image: "/images/neubrutalism-landing-page.png",
-    name: "Neubrutalism Landing Page",
-    description: "Figma, UI/UX, Icon Design",
-    url: "https://www.behance.net/gallery/183186019/Neubrutalism-Landing-Page",
-  },
-  {
     image: "/images/soundoff.png",
     name: "Sound-Off Case Study",
     description: "Adobe XD, UI/UX, User Testing",
     url: "https://www.behance.net/gallery/169087427/SoundOff-Case-Study",
-  },
-  {
-    image: "/images/allrecipes-redesign.png",
-    name: "AllRecipes Redesign",
-    description: "Figma, UI/UX, Wireframes",
-    url: "https://www.behance.net/gallery/180092127/AllRecipes-Redesign",
   },
   {
     image: "/images/Responsive-Event-Mockup.png",

@@ -35,7 +35,7 @@ export function About() {
               viewport={{ once: true }}
               className="text-muted-foreground"
             >
-              I'm a passionate Software Developer and UI/UX Designer with a focus on creating
+              I&apos;m a passionate Software Developer and UI/UX Designer with a focus on creating
               beautiful, functional, and accessible web experiences. With expertise in modern
               web technologies and design principles, I bring ideas to life through clean code
               and intuitive interfaces.

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SendIcon, XIcon } from 'lucide-react';
 import emailjs from '@emailjs/browser';
@@ -31,7 +31,7 @@ export function Contact() {
     const [notification, setNotification] = useState<NotificationType>(null);
     const notificationDuration = 5000; // Notification duration in ms
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
             ...formData,
             [e.target.id]: e.target.value

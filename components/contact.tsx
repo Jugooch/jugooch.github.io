@@ -5,15 +5,10 @@ import { motion } from 'framer-motion';
 import { SendIcon, XIcon } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "default_public_key";
-
-
-// Initialize EmailJS with your public key
 (function(){
-    emailjs.init(publicKey);
+    emailjs.init("ODxwqmAv2YZSAAZmm");
 })();
 
-// Define a type for the notification state
 type NotificationType = {
     success: boolean;
     message: string;
@@ -27,9 +22,8 @@ export function Contact() {
         message: ''
     });
 
-    // Use the defined type for the notification state
     const [notification, setNotification] = useState<NotificationType>(null);
-    const notificationDuration = 5000; // Notification duration in ms
+    const notificationDuration = 5000;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({

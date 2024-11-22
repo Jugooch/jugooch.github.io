@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 33% 7%;
+    --foreground: 210 40% 98%;
+    
+    --card: 240 33% 10%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 240 33% 10%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 252 100% 67%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 217 100% 85%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    
+    --muted: 240 33% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --accent: 262 83% 58%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 33% 20%;
+    --input: 240 33% 20%;
+    --ring: 252 100% 67%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(147,51,234,0.5)] hover:scale-105;
+  }
+}
+
+@layer utilities {
+  .prose :where(code):not(:where([class~="not-prose"] *)) {
+    @apply bg-muted text-primary px-1.5 py-0.5 rounded;
+  }
+
+  .prose :where(pre):not(:where([class~="not-prose"] *)) {
+    @apply bg-card text-card-foreground p-4 rounded-lg;
+  }
+}

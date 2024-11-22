@@ -5,9 +5,12 @@ import { motion } from 'framer-motion';
 import { SendIcon, XIcon } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
+const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "default_public_key";
+
+
 // Initialize EmailJS with your public key
 (function(){
-    emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
+    emailjs.init(publicKey);
 })();
 
 // Define a type for the notification state

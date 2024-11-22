@@ -1,0 +1,90 @@
+---
+title: "Kue - Dating App for Nerds"
+date: "2024-03-01"
+summary: "An exclusive mobile dating application focused on matching people based on their nerdy interests, built with Flutter and Firebase."
+coverImage: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=2128&h=1424"
+technologies: ["Flutter", "Dart", "Firebase", "Figma"]
+links:
+  github: "https://github.com/your-username/kue"
+gallery:
+  - url: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=2128&h=1424"
+    caption: "Matching Interface"
+  - url: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80&w=2128&h=1424"
+    caption: "Profile Setup"
+---
+
+# Kue - Dating App for Nerds
+
+An exclusive mobile dating application focused on matching people based on their nerdy interests. Built with Flutter and Firebase, this cross-platform application provides a unique dating experience for individuals who share specific interests in gaming, anime, comics, and other nerd culture elements.
+
+## Technical Overview
+
+The application leverages several modern technologies:
+
+- **Flutter Framework**: Used for cross-platform development, supporting both iOS and Android
+- **Firebase Backend**: Provides real-time database capabilities and authentication
+- **Dart Language**: Powers the application logic and API calls
+- **Figma**: Used for UI/UX design and prototyping
+
+## Key Features
+
+### User Authentication & Profile Setup
+- Secure account creation and login
+- Detailed profile customization
+- Interest selection and preference settings
+
+### Matching System
+- Interest-based matching algorithm
+- Swipe interface for user interaction
+- Parameter-based filtering system
+
+### Messaging Platform
+- Real-time chat functionality
+- Match management
+- Message notifications
+
+## Development Process
+
+The development followed a structured approach:
+
+1. Initial Design Phase
+   - User interface mockups in Figma
+   - User flow mapping
+   - Feature prioritization
+
+2. Technical Implementation
+   - Firebase integration for backend services
+   - Flutter widget development
+   - Real-time messaging system setup
+
+3. Testing & Optimization
+   - Cross-platform testing
+   - Performance optimization
+   - User feedback integration
+
+## Technical Architecture
+
+The application uses a clean architecture pattern:
+
+```dart
+// Example of the matching algorithm implementation
+class MatchingService {
+  Future<List<Profile>> findMatches(UserPreferences preferences) async {
+    // Implementation details for matching logic
+    return await FirebaseFirestore.instance
+        .collection('users')
+        .where('interests', arrayContainsAny: preferences.interests)
+        .get()
+        .then((snapshot) => snapshot.docs
+            .map((doc) => Profile.fromFirestore(doc))
+            .toList());
+  }
+}
+```
+
+## Impact and Results
+
+- Successfully created a niche dating platform for nerdy individuals
+- Implemented cross-platform support using Flutter
+- Achieved seamless integration with Firebase
+- Created an intuitive and engaging user interface

@@ -27,14 +27,14 @@ export function Projects() {
           >
             <div className="relative h-48">
               <Image
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1080"
+                src="/images/PortfolioHome.jpg"
                 alt="Space Portfolio"
                 fill
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                 <Link
-                  href="https://github.com/your-username/portfolio"
+                  href="https://github.com/Jugooch/jugooch.github.io"
                   target="_blank"
                   className="p-2 rounded-full bg-primary/20 hover:bg-primary/40 transition-colors"
                   aria-label="View Portfolio source on GitHub"
@@ -71,14 +71,14 @@ export function Projects() {
           >
             <div className="relative h-48">
               <Image
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800&h=500"
+                src="/images/GCUAppHome.jpg"
                 alt="GCU Mobile App"
                 fill
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                 <Link
-                  href="https://github.com/your-username/gcu-mobile-app"
+                  href="https://github.com/Jugooch/gcu_student_app"
                   target="_blank"
                   className="p-2 rounded-full bg-primary/20 hover:bg-primary/40 transition-colors"
                   aria-label="View GCU Mobile App source on GitHub"
@@ -115,14 +115,14 @@ export function Projects() {
           >
             <div className="relative h-48">
               <Image
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&h=500"
+                src="/images/MythographyHome.jpg"
                 alt="ODDSpot Sports"
                 fill
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                 <Link
-                  href="https://github.com/your-username/oddspot-sports"
+                  href="https://github.com/Mythography/Mythography"
                   target="_blank"
                   className="p-2 rounded-full bg-primary/20 hover:bg-primary/40 transition-colors"
                   aria-label="View ODDSpot Sports source on GitHub"
@@ -133,12 +133,12 @@ export function Projects() {
             </div>
 
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">ODDSpot Sports</h3>
+              <h3 className="text-xl font-semibold mb-2">Mythography Application Support Suite</h3>
               <p className="text-muted-foreground mb-4">
-                Real-time sports betting odds platform with dynamic updates
+                A comprehensive suite of developer tools inspired by mythological figures, providing monitoring, security, analytics, and encryption solutions.
               </p>
               <div className="flex flex-wrap gap-2">
-                {['Vue', 'C#', 'Azure'].map((tag) => (
+                {["Next.js", "JavaScript", "Figma", "NPM"].map((tag) => (
                   <span
                     key={tag}
                     className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary"

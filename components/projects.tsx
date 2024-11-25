@@ -45,7 +45,11 @@ export function Projects() {
             </div>
 
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">Space Portfolio</h3>
+              <h2 className="text-xl font-semibold mb-2 hover:text-primary transition-colors">
+                <Link href={`/portfolio/space-portfolio`}>
+                  Space Portfolio
+                </Link>
+              </h2>
               <p className="text-muted-foreground mb-4">
                 A modern, space-themed portfolio website built with Next.js and TypeScript
               </p>
@@ -89,7 +93,11 @@ export function Projects() {
             </div>
 
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">GCU Mobile App</h3>
+              <h2 className="text-xl font-semibold mb-2 hover:text-primary transition-colors">
+                <Link href={`/portfolio/gcu-mobile-app`}>
+                  GCU Mobile App
+                </Link>
+              </h2>
               <p className="text-muted-foreground mb-4">
                 A unified mobile application for Grand Canyon University students
               </p>
@@ -133,7 +141,11 @@ export function Projects() {
             </div>
 
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">Mythography Application Support Suite</h3>
+              <h2 className="text-xl font-semibold mb-2 hover:text-primary transition-colors">
+                <Link href={`/portfolio/mythography`}>
+                  Mythography Application Support Suite
+                </Link>
+              </h2>
               <p className="text-muted-foreground mb-4">
                 A comprehensive suite of developer tools inspired by mythological figures, providing monitoring, security, analytics, and encryption solutions.
               </p>

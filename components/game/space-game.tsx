@@ -134,8 +134,10 @@ export function SpaceGame() {
 
     const gameLoop = () => {
         const canvas = canvasRef.current;
+        if (!canvas) return; // Ensure canvas is non-null
+
         const ctx = canvas.getContext('2d');
-        if (!canvas || !ctx) return;
+        if (!ctx) return; // Ensure context is non-null
 
         ctx.fillStyle = 'rgb(8, 8, 28)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);

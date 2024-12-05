@@ -79,8 +79,10 @@ export function RocketGame() {
 
     const gameLoop = () => {
         const canvas = canvasRef.current;
+        if (!canvas) return; // Ensure canvas is non-null
+
         const ctx = canvas.getContext('2d');
-        if (!canvas || !ctx) return;
+        if (!ctx) return; // Ensure context is non-null
 
         // Clear canvas
         ctx.fillStyle = 'rgba(8, 8, 28, 0.2)';

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Timer, ArrowLeft } from 'lucide-react';
+import { Timer, ArrowLeft, Pencil } from 'lucide-react';
 import Link from 'next/link';
 import {
     GRAVITY,
@@ -15,9 +15,11 @@ import {
     SPAWN_INTERVAL,
     drawRocket,
     drawObstacle,
-    checkCollision
+    checkCollision,
+    loadImage
 } from './utils';
-import type { GameState, RocketState, Star, Obstacle } from './types';
+import type { GameState, RocketState } from './types';
+import { CharacterCreatorModal } from './character-creator/modal';
 
 export function SpaceGame() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -25,6 +27,8 @@ export function SpaceGame() {
     const [gameStarted, setGameStarted] = useState(false);
     const [gameOver, setGameOver] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
+    const [showCharacterCreator, setShowCharacterCreator] = useState(false);
+    const [customCharacter, setCustomCharacter] = useState<HTMLImageElement | null>(null);
 
     const rocketRef = useRef<RocketState>({
         y: 0,
@@ -132,12 +136,20 @@ export function SpaceGame() {
         };
     }, [gameStarted, gameOver]);
 
+    const handleSaveCharacter = async (imageData: string) => {
+        try {
+            const img = await loadImage(imageData);
+            setCustomCharacter(img);
+        } catch (error) {
+            console.error('Error loading custom character:', error);
+        }
+    };
+
     const gameLoop = () => {
         const canvas = canvasRef.current;
-        if (!canvas) return; // Ensure canvas is non-null
-
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        if (!ctx) return; // Ensure context is non-null
+        if (!ctx) return;
 
         ctx.fillStyle = 'rgb(8, 8, 28)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -166,7 +178,7 @@ export function SpaceGame() {
         );
         rocketRef.current.y += rocketRef.current.velocity;
 
-        drawRocket(ctx, 100, rocketRef.current.y);
+        drawRocket(ctx, 100, rocketRef.current.y, customCharacter);
 
         // Update and draw obstacles
         if (gameStateRef.current.animationFrame % SPAWN_INTERVAL === 0) {
@@ -245,12 +257,21 @@ export function SpaceGame() {
                             <p className="mb-6 text-muted-foreground">
                                 Press spacebar or tap screen to control the rocket
                             </p>
-                            <button
-                                onClick={startGame}
-                                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
-                            >
-                                Start Game
-                            </button>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button
+                                    onClick={() => setShowCharacterCreator(true)}
+                                    className="px-6 py-3 bg-card text-card-foreground rounded-lg hover:bg-card/80 transition inline-flex items-center justify-center gap-2"
+                                >
+                                    <Pencil className="w-4 h-4" />
+                                    Create Character
+                                </button>
+                                <button
+                                    onClick={startGame}
+                                    className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
+                                >
+                                    Start Game
+                                </button>
+                            </div>
                         </motion.div>
                     </div>
                 )}
@@ -273,6 +294,12 @@ export function SpaceGame() {
                         </motion.div>
                     </div>
                 )}
+
+                <CharacterCreatorModal
+                    open={showCharacterCreator}
+                    onOpenChange={setShowCharacterCreator}
+                    onSave={handleSaveCharacter}
+                />
             </div>
         </div>
     );

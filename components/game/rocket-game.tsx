@@ -1,41 +1,47 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { RocketIcon, Timer, Trophy, ArrowLeft } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Timer, ArrowLeft, Pencil } from 'lucide-react';
 import Link from 'next/link';
+import {
+    GRAVITY,
+    THRUST,
+    MAX_VELOCITY,
+    MIN_OBSTACLE_GAP,
+    MAX_OBSTACLE_GAP,
+    OBSTACLE_WIDTH,
+    SPEED_INCREASE_RATE,
+    SPAWN_INTERVAL,
+    drawRocket,
+    drawObstacle,
+    checkCollision,
+    loadImage
+} from './utils';
+import type { GameState, RocketState } from './types';
+import { CharacterCreatorModal } from './character-creator/modal';
 
-interface Obstacle {
-    id: number;
-    x: number;
-    topHeight: number;
-}
-
-export function RocketGame() {
+export function SpaceGame() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [showGame, setShowGame] = useState(false);
+    const [showStart, setShowStart] = useState(true);
     const [gameStarted, setGameStarted] = useState(false);
     const [gameOver, setGameOver] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
-    const [bestTime, setBestTime] = useState(0);
+    const [showCharacterCreator, setShowCharacterCreator] = useState(false);
+    const [customCharacter, setCustomCharacter] = useState<HTMLImageElement | null>(null);
 
-    const rocketRef = useRef({
+    const rocketRef = useRef<RocketState>({
         y: 0,
         velocity: 0,
     });
 
-    const gameStateRef = useRef({
-        obstacles: [] as Obstacle[],
+    const gameStateRef = useRef<GameState>({
+        obstacles: [],
+        stars: [],
         animationFrame: 0,
         startTime: 0,
+        baseSpeed: 5,
     });
-
-    const GRAVITY = 0.5;
-    const JUMP_FORCE = -10;
-    const OBSTACLE_SPEED = 3;
-    const OBSTACLE_GAP = 200;
-    const OBSTACLE_WIDTH = 60;
-    const ROCKET_SIZE = 40;
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -46,8 +52,15 @@ export function RocketGame() {
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight * 0.8;
+            canvas.height = window.innerHeight - 80;
             rocketRef.current.y = canvas.height / 2;
+
+            gameStateRef.current.stars = Array(100).fill(null).map(() => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2,
+                speed: Math.random() * 2 + 1,
+            }));
         };
 
         window.addEventListener('resize', resizeCanvas);
@@ -59,6 +72,7 @@ export function RocketGame() {
     const startGame = () => {
         if (!canvasRef.current) return;
 
+        setShowStart(false);
         setGameStarted(true);
         setGameOver(false);
         setCurrentTime(0);
@@ -70,101 +84,31 @@ export function RocketGame() {
 
         gameStateRef.current = {
             obstacles: [],
+            stars: gameStateRef.current.stars,
             animationFrame: 0,
             startTime: Date.now(),
+            baseSpeed: 5,
         };
 
         gameLoop();
     };
 
-    const gameLoop = () => {
-        const canvas = canvasRef.current;
-        if (!canvas) return; // Ensure canvas is non-null
-
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return; // Ensure context is non-null
-
-        // Clear canvas
-        ctx.fillStyle = 'rgba(8, 8, 28, 0.2)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Update rocket position
-        rocketRef.current.velocity += GRAVITY;
-        rocketRef.current.y += rocketRef.current.velocity;
-
-        // Draw rocket
-        ctx.fillStyle = '#9333EA';
-        ctx.beginPath();
-        ctx.moveTo(100, rocketRef.current.y);
-        ctx.lineTo(100 + ROCKET_SIZE, rocketRef.current.y + ROCKET_SIZE / 2);
-        ctx.lineTo(100, rocketRef.current.y + ROCKET_SIZE);
-        ctx.closePath();
-        ctx.fill();
-
-        // Update and draw obstacles
-        if (gameStateRef.current.animationFrame % 100 === 0) {
-            const topHeight = Math.random() * (canvas.height - OBSTACLE_GAP - 100) + 50;
-            gameStateRef.current.obstacles.push({
-                id: Date.now(),
-                x: canvas.width,
-                topHeight,
-            });
-        }
-
-        gameStateRef.current.obstacles = gameStateRef.current.obstacles.filter(obstacle => {
-            obstacle.x -= OBSTACLE_SPEED;
-
-            // Draw top obstacle
-            ctx.fillStyle = '#6366F1';
-            ctx.fillRect(obstacle.x, 0, OBSTACLE_WIDTH, obstacle.topHeight);
-
-            // Draw bottom obstacle
-            ctx.fillRect(
-                obstacle.x,
-                obstacle.topHeight + OBSTACLE_GAP,
-                OBSTACLE_WIDTH,
-                canvas.height - (obstacle.topHeight + OBSTACLE_GAP)
-            );
-
-            // Check collision
-            if (
-                100 < obstacle.x + OBSTACLE_WIDTH &&
-                100 + ROCKET_SIZE > obstacle.x &&
-                (rocketRef.current.y < obstacle.topHeight ||
-                    rocketRef.current.y + ROCKET_SIZE > obstacle.topHeight + OBSTACLE_GAP)
-            ) {
-                endGame();
-            }
-
-            return obstacle.x > -OBSTACLE_WIDTH;
-        });
-
-        // Check boundaries
-        if (rocketRef.current.y < 0 || rocketRef.current.y > canvas.height) {
-            endGame();
-            return;
-        }
-
-        // Update time
-        setCurrentTime(Math.floor((Date.now() - gameStateRef.current.startTime) / 1000));
-
-        gameStateRef.current.animationFrame++;
-        if (!gameOver) {
-            requestAnimationFrame(gameLoop);
-        }
-    };
-
     const endGame = () => {
         setGameOver(true);
         setGameStarted(false);
-        if (currentTime > bestTime) {
-            setBestTime(currentTime);
-        }
+        setShowStart(false);
+    };
+
+    const resetGame = () => {
+        setShowStart(true);
+        setGameOver(false);
+        setGameStarted(false);
+        setCurrentTime(0);
     };
 
     const handleInput = (isPressed: boolean) => {
         if (gameStarted && !gameOver) {
-            rocketRef.current.velocity = isPressed ? JUMP_FORCE : 0;
+            rocketRef.current.velocity = isPressed ? THRUST : 0;
         }
     };
 
@@ -192,110 +136,171 @@ export function RocketGame() {
         };
     }, [gameStarted, gameOver]);
 
-    const handleBack = () => {
-        setShowGame(false);
-        setGameStarted(false);
-        setGameOver(false);
+    const handleSaveCharacter = async (imageData: string) => {
+        try {
+            const img = await loadImage(imageData);
+            setCustomCharacter(img);
+        } catch (error) {
+            console.error('Error loading custom character:', error);
+        }
+    };
+
+    const gameLoop = () => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        ctx.fillStyle = 'rgb(8, 8, 28)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Update and draw stars
+        gameStateRef.current.stars.forEach(star => {
+            star.x -= star.speed * (gameStateRef.current.baseSpeed / 5);
+            if (star.x < 0) {
+                star.x = canvas.width;
+                star.y = Math.random() * canvas.height;
+            }
+
+            ctx.fillStyle = `rgba(255, 255, 255, ${star.speed / 3})`;
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // Increase game speed
+        gameStateRef.current.baseSpeed += SPEED_INCREASE_RATE;
+
+        // Update rocket position
+        rocketRef.current.velocity = Math.max(
+            Math.min(rocketRef.current.velocity + GRAVITY, MAX_VELOCITY),
+            -MAX_VELOCITY
+        );
+        rocketRef.current.y += rocketRef.current.velocity;
+
+        drawRocket(ctx, 100, rocketRef.current.y, customCharacter);
+
+        // Update and draw obstacles
+        if (gameStateRef.current.animationFrame % SPAWN_INTERVAL === 0) {
+            const gap = MIN_OBSTACLE_GAP + Math.random() * (MAX_OBSTACLE_GAP - MIN_OBSTACLE_GAP);
+            const topHeight = Math.random() * (canvas.height - gap - 100) + 50;
+            gameStateRef.current.obstacles.push({
+                id: Date.now(),
+                x: canvas.width,
+                topHeight,
+                gap,
+                speed: gameStateRef.current.baseSpeed,
+            });
+        }
+
+        gameStateRef.current.obstacles = gameStateRef.current.obstacles.filter(obstacle => {
+            obstacle.x -= obstacle.speed;
+
+            drawObstacle(ctx, obstacle.x, obstacle.topHeight, true);
+            drawObstacle(ctx, obstacle.x, obstacle.topHeight + obstacle.gap, false);
+
+            if (checkCollision(100, rocketRef.current.y, obstacle.x, obstacle.topHeight, obstacle.gap)) {
+                endGame();
+            }
+
+            return obstacle.x > -OBSTACLE_WIDTH;
+        });
+
+        if (rocketRef.current.y < 0 || rocketRef.current.y > canvas.height) {
+            endGame();
+            return;
+        }
+
+        setCurrentTime(Math.floor((Date.now() - gameStateRef.current.startTime) / 1000));
+
+        gameStateRef.current.animationFrame++;
+        if (!gameOver) {
+            requestAnimationFrame(gameLoop);
+        }
     };
 
     return (
-        <div className="fixed bottom-8 right-8 z-50">
-            <AnimatePresence>
-                {!showGame && (
-                    <motion.button
-                        onClick={() => setShowGame(true)}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        exit={{ scale: 0 }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="relative group"
+        <div className="min-h-screen bg-background relative overflow-hidden">
+            <div className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border h-20">
+                <div className="container h-full mx-auto px-4 flex justify-between items-center">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors"
                     >
-                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-50 group-hover:opacity-75 transition duration-200" />
-                        <div className="relative px-6 py-3 bg-background rounded-lg leading-none flex items-center">
-                            <RocketIcon className="w-6 h-6 text-primary animate-float" />
-                            <span className="ml-2 text-foreground">Play Game</span>
-                        </div>
-                    </motion.button>
-                )}
-            </AnimatePresence>
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Back to Home
+                    </Link>
 
-            <AnimatePresence>
-                {showGame && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.5 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm"
-                    >
-                        <div className="relative w-full h-full max-w-7xl mx-auto px-4">
-                            <div className="absolute top-4 left-4 z-10">
+                    <div className="flex items-center gap-2">
+                        <Timer className="w-4 h-4" />
+                        <span>{currentTime}s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="h-[calc(100vh-80px)]">
+                <canvas
+                    ref={canvasRef}
+                    className="w-full h-full"
+                    onTouchStart={() => handleInput(true)}
+                    onTouchEnd={() => handleInput(false)}
+                />
+
+                {showStart && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-center"
+                        >
+                            <h2 className="text-2xl font-bold mb-4">Space Runner</h2>
+                            <p className="mb-6 text-muted-foreground">
+                                Press spacebar or tap screen to control the rocket
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <button
-                                    onClick={handleBack}
-                                    className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors"
+                                    onClick={() => setShowCharacterCreator(true)}
+                                    className="px-6 py-3 bg-card text-card-foreground rounded-lg hover:bg-card/80 transition inline-flex items-center justify-center gap-2"
                                 >
-                                    <ArrowLeft className="w-4 h-4 mr-2" />
-                                    Back to Home
+                                    <Pencil className="w-4 h-4" />
+                                    Create Character
+                                </button>
+                                <button
+                                    onClick={startGame}
+                                    className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
+                                >
+                                    Start Game
                                 </button>
                             </div>
-
-                            <div className="absolute top-4 right-4 flex items-center gap-4 text-foreground">
-                                <div className="flex items-center gap-2">
-                                    <Timer className="w-4 h-4" />
-                                    <span>{currentTime}s</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Trophy className="w-4 h-4 text-primary" />
-                                    <span>{bestTime}s</span>
-                                </div>
-                            </div>
-
-                            {!gameStarted && !gameOver && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
-                                >
-                                    <h2 className="text-2xl font-bold mb-4">Ready to Play?</h2>
-                                    <p className="mb-6 text-muted-foreground">
-                                        Press spacebar or tap screen to control the rocket
-                                    </p>
-                                    <button
-                                        onClick={startGame}
-                                        className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
-                                    >
-                                        Start Game
-                                    </button>
-                                </motion.div>
-                            )}
-
-                            <canvas
-                                ref={canvasRef}
-                                className="w-full h-4/5 mt-16"
-                                onTouchStart={() => handleInput(true)}
-                                onTouchEnd={() => handleInput(false)}
-                            />
-
-                            {gameOver && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
-                                >
-                                    <h2 className="text-2xl font-bold mb-4">Game Over!</h2>
-                                    <p className="mb-4">Time: {currentTime}s</p>
-                                    <button
-                                        onClick={startGame}
-                                        className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
-                                    >
-                                        Play Again
-                                    </button>
-                                </motion.div>
-                            )}
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
                 )}
-            </AnimatePresence>
+
+                {gameOver && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-center"
+                        >
+                            <h2 className="text-2xl font-bold mb-4">Game Over!</h2>
+                            <p className="mb-4">Time: {currentTime}s</p>
+                            <button
+                                onClick={resetGame}
+                                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
+                            >
+                                Play Again
+                            </button>
+                        </motion.div>
+                    </div>
+                )}
+
+                <CharacterCreatorModal
+                    open={showCharacterCreator}
+                    onOpenChange={setShowCharacterCreator}
+                    onSave={handleSaveCharacter}
+                />
+            </div>
         </div>
     );
 }

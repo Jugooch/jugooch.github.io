@@ -10,8 +10,24 @@ export const ROCKET_SIZE = 40;
 export const SPEED_INCREASE_RATE = 0.005;
 export const SPAWN_INTERVAL = 120;
 
-export function drawRocket(ctx: CanvasRenderingContext2D, x: number, y: number) {
-    // Draw rocket body
+export function drawRocket(
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    customSprite?: HTMLImageElement | null
+) {
+    if (customSprite) {
+        ctx.drawImage(
+            customSprite,
+            x - ROCKET_SIZE / 2,
+            y - ROCKET_SIZE / 2,
+            ROCKET_SIZE,
+            ROCKET_SIZE
+        );
+        return;
+    }
+
+    // Default rocket drawing
     ctx.fillStyle = '#9333EA';
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -66,4 +82,13 @@ export function checkCollision(
         rocketX < obstacleRight &&
         (rocketY < obstacleTopHeight || rocketBottom > gapBottom)
     );
+}
+
+export function loadImage(src: string): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+    });
 }

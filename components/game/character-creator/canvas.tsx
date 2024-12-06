@@ -239,8 +239,8 @@ export function CharacterCanvas({ onSave }: CharacterCanvasProps) {
 
     return (
         <div className="space-y-4">
-            <div className="flex justify-between items-center mb-4">
-                <div className="flex gap-2">
+            <div className="flex flex-wrap justify-center items-center mb-4 gap-2"> {/* Use flex-wrap here */}
+                <div className="flex flex-wrap items-center gap-2">
                     <button
                         onClick={() => setTool('brush')}
                         className={cn(
@@ -248,7 +248,7 @@ export function CharacterCanvas({ onSave }: CharacterCanvasProps) {
                             tool === 'brush' ? "bg-primary text-primary-foreground" : "bg-card hover:bg-card/80"
                         )}
                     >
-                        <Paintbrush className="w-5 h-5" />
+                        <Paintbrush className="w-5 h-5"/>
                     </button>
                     <button
                         onClick={() => setTool('fill')}
@@ -257,7 +257,7 @@ export function CharacterCanvas({ onSave }: CharacterCanvasProps) {
                             tool === 'fill' ? "bg-primary text-primary-foreground" : "bg-card hover:bg-card/80"
                         )}
                     >
-                        <PaintBucket className="w-5 h-5" />
+                        <PaintBucket className="w-5 h-5"/>
                     </button>
                     <button
                         onClick={() => setTool('eraser')}
@@ -266,7 +266,7 @@ export function CharacterCanvas({ onSave }: CharacterCanvasProps) {
                             tool === 'eraser' ? "bg-primary text-primary-foreground" : "bg-card hover:bg-card/80"
                         )}
                     >
-                        <Eraser className="w-5 h-5" />
+                        <Eraser className="w-5 h-5"/>
                     </button>
                     <input
                         type="color"
@@ -283,37 +283,41 @@ export function CharacterCanvas({ onSave }: CharacterCanvasProps) {
                         className="w-32"
                     />
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2 items-center"> {/* Wrap this flex container as well */}
                     <button
                         onClick={clearCanvas}
                         className="p-2 rounded-lg bg-destructive text-destructive-foreground hover:opacity-90 transition-colors"
                         title="Clear Canvas"
                     >
-                        <Trash2 className="w-5 h-5" />
+                        <Trash2 className="w-5 h-5"/>
                     </button>
                     <button
                         onClick={undo}
                         disabled={historyIndex <= 0}
                         className="p-2 rounded-lg bg-card hover:bg-card/80 disabled:opacity-50 transition-colors"
                     >
-                        <Undo className="w-5 h-5" />
+                        <Undo className="w-5 h-5"/>
                     </button>
                     <button
                         onClick={redo}
                         disabled={historyIndex >= history.length - 1}
                         className="p-2 rounded-lg bg-card hover:bg-card/80 disabled:opacity-50 transition-colors"
                     >
-                        <Redo className="w-5 h-5" />
+                        <Redo className="w-5 h-5"/>
                     </button>
                 </div>
             </div>
 
-            <div className="relative border border-border rounded-lg overflow-hidden">
+            <div className="relative border border-border rounded-lg overflow-hidden max-w-full mx-auto"
+                 style={{width: '100%', height: 'auto', maxHeight: '80vh'}}>
                 <canvas
                     ref={canvasRef}
                     className="w-full h-full touch-none bg-transparent"
                     style={{
-                        aspectRatio: '1/1',
+                        aspectRatio: '1 / 1',
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        height: 'auto',
                         background: 'repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%) 50% / 20px 20px'
                     }}
                     onClick={handleCanvasClick}
@@ -332,14 +336,14 @@ export function CharacterCanvas({ onSave }: CharacterCanvasProps) {
                     onClick={downloadImage}
                     className="px-4 py-2 rounded-lg bg-card hover:bg-card/80 transition-colors inline-flex items-center gap-2"
                 >
-                    <Download className="w-4 h-4" />
+                    <Download className="w-4 h-4"/>
                     Download
                 </button>
                 <button
                     onClick={saveCharacter}
                     className="px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-colors inline-flex items-center gap-2"
                 >
-                    <Save className="w-4 h-4" />
+                    <Save className="w-4 h-4"/>
                     Save & Use
                 </button>
             </div>

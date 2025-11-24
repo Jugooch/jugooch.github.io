@@ -23,7 +23,10 @@ export const metadata: Metadata = {
               type: 'image/jpeg',
           }
       ]
-  }
+  },
+  verification: {
+    google: '4kIM1Z8y3MaDEpvM4yhRcxkpteS_VZUy-RWWO659LUk',
+  },
 };
 
 export default function RootLayout({

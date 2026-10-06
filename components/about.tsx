@@ -1,104 +1,61 @@
-"use client";
-
-import { motion } from 'framer-motion';
-import { RocketIcon, CodeIcon, PaintbrushIcon } from 'lucide-react';
 import Image from 'next/image';
-import Link from "next/link";
-import { usePathname } from 'next/navigation'; // Import usePathname instead of useRouter
-
-
-
-const skills = [
-  { icon: CodeIcon, title: 'Development', description: 'Full-stack development with modern technologies' },
-  { icon: PaintbrushIcon, title: 'UI/UX Design', description: 'Creating beautiful and intuitive interfaces' },
-  { icon: RocketIcon, title: 'Performance', description: 'Optimizing for the best user experience' },
-];
+import { Section } from '@/components/section';
+import { education, skills } from '@/lib/site';
 
 export function About() {
-  const pathname = usePathname(); // Use usePathname hook
-  const isAboutPage = pathname === '/about';
-
   return (
-    <section id="about" className="py-20 min-h-screen flex items-center">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-12 items-center"
-        >
-            <div className="space-y-6">
-                <motion.h2
-                    initial={{x: -50}}
-                    whileInView={{x: 0}}
-                    viewport={{once: true}}
-                    className="text-3xl font-bold text-gradient"
-                >
-                    About Me
-                </motion.h2>
-                <motion.p
-                    initial={{opacity: 0, y: 20}}
-                    whileInView={{opacity: 1, y: 0}}
-                    viewport={{once: true}}
-                    className="text-muted-foreground"
-                >
-                    I&apos;m a passionate Software Developer and UI/UX Designer with a focus on creating
-                    beautiful, functional, and accessible web experiences. With expertise in modern
-                    web technologies and design principles, I bring ideas to life through clean code
-                    and intuitive interfaces.
-                </motion.p>
-
-                <div className="grid gap-6">
-                    {skills.map((skill, index) => (
-                        <motion.div
-                            key={skill.title}
-                            initial={{opacity: 0, x: -20}}
-                            whileInView={{opacity: 1, x: 0}}
-                            viewport={{once: true}}
-                            transition={{delay: index * 0.2}}
-                            className="flex items-start gap-4 p-4 rounded-lg bg-card hover-glow"
-                        >
-                            <skill.icon className="w-6 h-6 text-primary"/>
-                            <div>
-                                <h3 className="font-semibold mb-1">{skill.title}</h3>
-                                <p className="text-sm text-muted-foreground">{skill.description}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-                {!isAboutPage && (<motion.div
-                    initial={{opacity: 0, y: 20}}
-                    whileInView={{opacity: 1, y: 0}}
-                    viewport={{once: true}}
-                    className="mt-12 text-center"
-                >
-                    <Link
-                        href="/about"
-                        className="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover-glow"
-                    >
-                        More About Me
-                    </Link>
-                </motion.div>)}
-            </div>
-
-            <motion.div
-                initial={{opacity: 0, scale: 0.8}}
-                whileInView={{opacity: 1, scale: 1}}
-                viewport={{once: true}}
-                className="relative aspect-square"
-            >
-                <div
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl"/>
-                <Image
-                    src="/me.jpg"
-                    alt="Justice Gooch"
-                    width={688}
-              height={688}
-              className="rounded-full object-cover border-4 border-primary/20"
-            />
-          </motion.div>
-        </motion.div>
+    <Section id="about" eyebrow="About" title="Design-minded, engineering-first">
+      <div className="grid gap-10 md:grid-cols-[220px_1fr] md:gap-14 lg:grid-cols-[260px_1fr]">
+        <Image
+          src="/me.webp"
+          alt="Portrait of Justice Gooch"
+          width={640}
+          height={640}
+          sizes="(min-width: 1024px) 260px, (min-width: 768px) 220px, 180px"
+          className="h-auto w-44 rounded-2xl border border-border object-cover md:w-full"
+        />
+        <div className="max-w-[65ch] space-y-5 text-lg leading-relaxed text-muted-foreground">
+          <p>
+            I work in the overlap between product design and engineering, and I think about products from
+            the interface in. I like being the person who can sit with a client, sketch the flow in Figma,
+            and then go build the API, the data model, and the deploy pipeline behind it.
+          </p>
+          <p>
+            Outside of work, I dabble in music and play video games, especially MMOs like Final Fantasy XIV.
+            I also love hiking, and walkable cities where I can spend an afternoon exploring
+            neighborhoods, trying restaurants, and stopping into little shops along the way.
+          </p>
+        </div>
       </div>
-    </section>
+
+      <div className="mt-20 grid gap-12 lg:grid-cols-2">
+        <div>
+          <h3 className="text-xl font-semibold">Skills</h3>
+          <p className="mt-2 text-sm text-muted-foreground">What I reach for day to day.</p>
+          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Core skills">
+            {skills.core.map((skill) => (
+              <li key={skill} className="rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 text-sm font-medium text-foreground">
+                {skill}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm text-muted-foreground">Also comfortable with</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{skills.supporting.join(' · ')}</p>
+        </div>
+
+        <div>
+          <h3 className="text-xl font-semibold">Education</h3>
+          <ul className="mt-5 space-y-6">
+            {education.map((item) => (
+              <li key={item.school}>
+                <p className="font-medium">{item.degree}</p>
+                <p className="text-muted-foreground">{item.school}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{item.honors}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Section>
   );
 }

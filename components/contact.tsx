@@ -1,179 +1,155 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { SendIcon, XIcon } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import { useState } from 'react';
+import { CheckCircle2Icon, Loader2Icon, MailIcon, SendIcon, TriangleAlertIcon } from 'lucide-react';
+import { profile } from '@/lib/site';
 
-(function(){
-    emailjs.init("ODxwqmAv2YZSAAZmm");
-})();
+const EMAILJS = {
+  publicKey: 'ODxwqmAv2YZSAAZmm',
+  serviceId: 'service_r089xfk',
+  templateId: 'template_9rg7sjs',
+};
 
-type NotificationType = {
-    success: boolean;
-    message: string;
-} | null;
+type Status = 'idle' | 'sending' | 'sent' | 'error';
+
+const emptyForm = { name: '', email: '', message: '' };
+
+const fieldClass =
+  'w-full rounded-lg border border-input bg-background px-4 py-2.5 text-foreground placeholder:text-muted-foreground/60 transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/40';
 
 export function Contact() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
+  const [form, setForm] = useState(emptyForm);
+  const [status, setStatus] = useState<Status>('idle');
 
-    const [notification, setNotification] = useState<NotificationType>(null);
-    const notificationDuration = 5000;
+  const update = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    if (status === 'sent' || status === 'error') setStatus('idle');
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.id]: e.target.value
-        });
-    };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === 'sending') return;
+    setStatus('sending');
+    try {
+      // Loaded on demand so the email client isn't part of the initial page bundle
+      const { default: emailjs } = await import('@emailjs/browser');
+      await emailjs.send(
+        EMAILJS.serviceId,
+        EMAILJS.templateId,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          subject: `Portfolio message from ${form.name}`,
+          message: form.message,
+        },
+        { publicKey: EMAILJS.publicKey },
+      );
+      // Only clear the form once delivery has actually succeeded
+      setForm(emptyForm);
+      setStatus('sent');
+    } catch (err) {
+      console.error('Contact form failed', err);
+      setStatus('error');
+    }
+  };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  return (
+    <section id="contact" aria-labelledby="contact-heading" className="border-t border-border/60 bg-surface py-16 sm:py-24 lg:py-28">
+      <div className="shell grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+        <div>
+          <p className="eyebrow mb-3">Contact</p>
+          <h2 id="contact-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Let’s talk
+          </h2>
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-muted-foreground">
+            Hiring, a product idea, or a project for Icarian? Send a note and I’ll get back to you.
+          </p>
+          <a
+            href={`mailto:${profile.email}`}
+            className="mt-8 inline-flex items-center gap-2 text-lg font-medium text-primary-soft underline-offset-4 hover:underline"
+          >
+            <MailIcon className="h-5 w-5" aria-hidden="true" />
+            {profile.email}
+          </a>
+        </div>
 
-        const { name, email, subject, message } = formData;
-
-        emailjs.send("service_r089xfk", "template_9rg7sjs", {
-            from_name: name,
-            from_email: email,
-            subject: subject,
-            message: message,
-        })
-            .then(response => {
-                setNotification({ success: true, message: "Email sent successfully!" });
-                console.log("SUCCESS!", response.status, response.text);
-            })
-            .catch(err => {
-                setNotification({ success: false, message: "Failed to send the email." });
-                console.error("FAILED...", err);
-            });
-
-        setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-        });
-    };
-
-    useEffect(() => {
-        if (notification) {
-            const timer = setTimeout(() => {
-                setNotification(null);
-            }, notificationDuration);
-
-            return () => clearTimeout(timer);
-        }
-    }, [notification]);
-
-    return (
-        <section id="contact" className="py-20 min-h-screen">
-            <div className="container mx-auto px-4 max-w-2xl">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-3xl font-bold text-gradient mb-4">Get In Touch</h2>
-                    <p className="text-muted-foreground">
-                        Have a project in mind? Let&apos;s work together to create something amazing.
-                    </p>
-                </motion.div>
-
-                <motion.form
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="space-y-6"
-                    onSubmit={handleSubmit}
-                >
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <label htmlFor="name" className="text-sm font-medium">
-                                Name
-                            </label>
-                            <input
-                                type="text"
-                                id="name"
-                                className="w-full px-4 py-2 rounded-lg bg-card border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label htmlFor="email" className="text-sm font-medium">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                className="w-full px-4 py-2 rounded-lg bg-card border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    <div className="space-y-2">
-                        <label htmlFor="subject" className="text-sm font-medium">
-                            Subject
-                        </label>
-                        <input
-                            type="text"
-                            id="subject"
-                            className="w-full px-4 py-2 rounded-lg bg-card border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                            value={formData.subject}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <label htmlFor="message" className="text-sm font-medium">
-                            Message
-                        </label>
-                        <textarea
-                            id="message"
-                            rows={6}
-                            className="w-full px-4 py-2 rounded-lg bg-card border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="w-full px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover-glow flex items-center justify-center gap-2"
-                    >
-                        Send Message
-                        <SendIcon className="w-4 h-4" />
-                    </button>
-                </motion.form>
-
-                {notification && (
-                    <div className={`fixed bottom-1 right-1 p-4 rounded-lg shadow-lg ${notification.success ? 'bg-green-500' : 'bg-red-500'} text-white flex items-center relative`}>
-                        <span>{notification.message}</span>
-                        <button onClick={() => setNotification(null)} className="ml-auto pl-4">
-                            <XIcon className="w-4 h-4" />
-                        </button>
-                        {/* Progress bar */}
-                        <motion.div
-                            initial={{ width: '100%' }}
-                            animate={{ width: 0 }}
-                            transition={{ duration: notificationDuration / 1000 }}
-                            className="absolute bottom-0 left-0 h-1 bg-white opacity-50"
-                        />
-                    </div>
-                )}
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="space-y-2">
+              <label htmlFor="contact-name" className="text-sm font-medium">
+                Name
+              </label>
+              <input id="contact-name" name="name" autoComplete="name" required value={form.name} onChange={update} className={fieldClass} />
             </div>
-        </section>
-    );
+            <div className="space-y-2">
+              <label htmlFor="contact-email" className="text-sm font-medium">
+                Email
+              </label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={form.email}
+                onChange={update}
+                className={fieldClass}
+              />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="contact-message" className="text-sm font-medium">
+              Message
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows={6}
+              required
+              value={form.message}
+              onChange={update}
+              className={`${fieldClass} resize-y`}
+            />
+          </div>
+
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <button type="submit" disabled={status === 'sending'} className="btn-primary px-6 py-3 text-base disabled:cursor-wait disabled:opacity-70">
+              {status === 'sending' ? (
+                <>
+                  <Loader2Icon className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  Sending…
+                </>
+              ) : (
+                <>
+                  Send message
+                  <SendIcon className="h-4 w-4" aria-hidden="true" />
+                </>
+              )}
+            </button>
+
+            <div role="status" aria-live="polite" className="text-sm">
+              {status === 'sent' && (
+                <p className="flex items-center gap-2 text-emerald-300">
+                  <CheckCircle2Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  Thanks — your message was sent.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="flex items-center gap-2 text-red-300">
+                  <TriangleAlertIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>
+                    That didn’t go through. Your message is still here — try again or email{' '}
+                    <a href={`mailto:${profile.email}`} className="underline">
+                      {profile.email}
+                    </a>
+                    .
+                  </span>
+                </p>
+              )}
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
 }

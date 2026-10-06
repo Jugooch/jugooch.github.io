@@ -1,48 +1,53 @@
-"use client";
+import { GamepadIcon, GithubIcon, LinkedinIcon, MailIcon } from 'lucide-react';
+import { profile } from '@/lib/site';
 
-import { GithubIcon, LinkedinIcon, MailIcon } from 'lucide-react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+const links = [
+  { href: profile.github, label: 'GitHub', icon: GithubIcon },
+  { href: profile.linkedin, label: 'LinkedIn', icon: LinkedinIcon },
+  { href: `mailto:${profile.email}`, label: 'Email', icon: MailIcon },
+];
 
 export function Footer() {
   return (
-    <footer className="py-12 bg-card/50 backdrop-blur-sm">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center gap-6"
+    <footer className="relative overflow-hidden border-t border-border/60">
+      {/* Static, faint stars to bookend the hero */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-40 [background-image:radial-gradient(1px_1px_at_12%_30%,white,transparent),radial-gradient(1px_1px_at_38%_70%,white,transparent),radial-gradient(1.5px_1.5px_at_64%_25%,white,transparent),radial-gradient(1px_1px_at_82%_60%,white,transparent),radial-gradient(1px_1px_at_92%_20%,white,transparent)]"
+      />
+      <div className="shell relative flex flex-col gap-8 py-12 md:flex-row md:items-center md:justify-between">
+        <div className="space-y-2">
+          <p className="font-semibold">{profile.name}</p>
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} · Built with Next.js and Tailwind CSS</p>
+        </div>
+
+        <a
+          href="https://jugooch.github.io/Cybersweeper/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-3 self-start rounded-lg border border-border bg-card px-4 py-3 text-sm transition-colors hover:border-primary/60 md:self-auto"
         >
-          <div className="flex gap-4">
-            <Link
-              href="https://github.com/jugooch"
-              target="_blank"
-              className="p-2 rounded-full bg-card hover-glow"
-              aria-label="GitHub Profile"
-            >
-              <GithubIcon className="w-6 h-6" />
-            </Link>
-            <Link
-              href="https://linkedin.com/in/justicegooch"
-              target="_blank"
-              className="p-2 rounded-full bg-card hover-glow"
-              aria-label="LinkedIn Profile"
-            >
-              <LinkedinIcon className="w-6 h-6" />
-            </Link>
-            <Link
-              href="mailto:justicegooch@gmail.com"
-              className="p-2 rounded-full bg-card hover-glow"
-              aria-label="Email Contact"
-            >
-              <MailIcon className="w-6 h-6" />
-            </Link>
-          </div>
-          <p className="text-sm text-muted-foreground text-center">
-            © {new Date().getFullYear()} Justice Gooch. All rights reserved.
-          </p>
-        </motion.div>
+          <GamepadIcon className="h-5 w-5 text-primary-soft" aria-hidden="true" />
+          <span>
+            <span className="block text-xs text-muted-foreground">Built for fun</span>
+            Play CyberSweeper
+          </span>
+        </a>
+
+        <ul className="flex gap-1">
+          {links.map(({ href, label, icon: Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                aria-label={label}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+              >
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </footer>
   );
